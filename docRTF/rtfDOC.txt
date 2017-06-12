@@ -1,0 +1,34 @@
+\par => enter
+\cf0\par =>final arquivo (*)
+
+\f0 		=> tipo da fonte
+\fs60 		=> tamanho da fonte em pontos => 60 = 30pt
+\qc + \line	=> centralizar texto ex.: \qc testCenter \line oi \line
+\'ea 		=> caracter => ê =>http://www.absoluta.org/web/web_iso_8859.htm
+\deff0		=> define a fonte padrao como #0
+{\f0 SHOWCARD GOTHIC;}{\f1 Times New Roman;} => duas fontes declaradas
+{\pard ... \par} => paragrafo => ex.: {\pard meu paragrafo! \par}
+\pard		=> reseta os estilos herdados
+\par		=> encerra o parágrafo
+
+twips		=> twips = 15 * pixels | pixels = twips / 15
+
+\fiN 	=> identa a primeira linha do paragrafo ex.: \fin600
+\liN 	=> identa todo o paragrafo a esquerda
+\riN 	=> identa todo o paragrafo a direita
+
+#caracter formatacao basica
+\i		=> italico
+\b 		=> negrito
+\ul		=> underline
+\super		=> ex.: texto x{\super 2} => texto x²
+\sub		=> ex.: h{\sub 2}o
+\strike 	=> texto riscado
+
+\plain 		=> retira a formatacao \i\b e etc.. caso não esteja num paragrafo
+\colortbl;	=> declaracao das cores que poderao ser usados no escopo.
+		o => ; => define que o primeiro elemento da lista vai ser a
+		cor padrao, a lista comeca de 1.
+
+http://summernote.org/deep-dive/#customization
+https://www.safaribooksonline.com/library/view/rtf-pocket-guide/9781449302047/ch01.html
