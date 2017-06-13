@@ -30,5 +30,8 @@ twips		=> twips = 15 * pixels | pixels = twips / 15
 		o => ; => define que o primeiro elemento da lista vai ser a
 		cor padrao, a lista comeca de 1.
 
+\sbN 		=> adiciona espaços verticalmente depois do paragrafo. => ex.: \sb180 => em twips
+\saN		=> after
+
 http://summernote.org/deep-dive/#customization
 https://www.safaribooksonline.com/library/view/rtf-pocket-guide/9781449302047/ch01.html
