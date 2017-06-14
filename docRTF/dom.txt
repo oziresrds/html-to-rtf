@@ -1,0 +1,6 @@
+Node.childNodes
+https://developer.mozilla.org/pt-BR/docs/Web/API/Node/childNodes
+
+https://developer.mozilla.org/pt-BR/docs/DOM/Referencia_do_DOM
+
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_childnodes
