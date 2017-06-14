@@ -1,0 +1,20 @@
+{
+  "name": "editorpacs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ./src/test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://oziresRSOF@bitbucket.org/oziresRSOF/editorpacs.git"
+  },
+  "author": "OziresR.S.O.F",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/oziresRSOF/editorpacs#readme",
+  "dependencies": {
+    "typescript": "^2.3.4"
+  }
+}
