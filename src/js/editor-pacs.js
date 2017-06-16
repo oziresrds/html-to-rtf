@@ -11,6 +11,21 @@ var rtfString = '';
 var rtfColorTableContent = '';
 var rtfColorTableHead = '{\\colortbl ;';
 var rtfColorTableFooter = '}';
+
+var newRtfTag = '';
+var tagRtf = '';
+
+var RTF = [];
+
+var newListOfTags = [
+   { tag: 'P', openingRtf: '{\\pard ', closing: '/p', closingRtf: ' \\sb70 \\par}\n' },
+   { opening: 'b', openingRtf: '{\\b ', closing: '/b', closingRtf: ' }' },
+   { opening: 'i', openingRtf: '{\\i ', closing: '/i', closingRtf: ' }' },
+   { opening: 'br', openingRtf: ' \\line ', closing: '/br', closingRtf: ' \\line ' },
+   { opening: 'strong', openingRtf: '{\\b ', closing: '/strong', closingRtf: ' }' },
+   { opening: 'strong', openingRtf: '{\\b ', closing: '/strong', closingRtf: ' }' }
+];
+
 var colorList = [
     [2], [
         { red: '01', green: '55', blue: '77', reference: '\\cf1'},
@@ -20,6 +35,22 @@ var colorList = [
 
 function convertHtmlToRtf() {
     divHtml = $("#content").html();
+
+   //  test dom node
+   console.log('######################################################');
+   var contentTags = document.getElementById('content').childNodes;
+   var txt = '';
+   var nomeDaTag = '';
+   var fatherTag = '';
+
+   for(var i = 0; i<contentTags.length; i++) {
+      fatherTag = contentTags[i];   
+      readAllChildInTag(fatherTag);
+   }
+
+   console.log('RTF => ', RTF);
+   console.log('######################################################');
+   // final test dom node
 
     console.log(divHtml);
     for (divHtmlIndex = 0; divHtmlIndex < divHtml.length; divHtmlIndex++) {
@@ -39,14 +70,50 @@ function convertHtmlToRtf() {
     }
     generateRtfColorTable();
 
-    rtfColorTableHead += rtfColorTableContent + '}';
+{    rtfColorTableHead += rtfColorTableContent + '}';
     rtfStringHeader += rtfColorTableHead
     console.log('rtf => ', rtfStringContent);
     console.log('rtfStringHeader => ', rtfStringHeader);
     console.log('rtfStringFooter =>', rtfStringFooter);
-    console.log('Final => \n', (rtfString += rtfStringHeader + rtfStringContent + rtfStringFooter));
+    console.log('Final => \n', (rtfString += rtfStringHeader + rtfStringContent + rtfStringFooter));}
 
 }
+
+// #####################################
+function readAllChildInTag(fatherTag) {
+   if(fatherTag.nodeName != '#text' && fatherTag.hasChildNodes()) {
+      RTF.push(verifyTag(fatherTag.nodeName));
+      console.log(fatherTag.nodeName);
+      console.log('FATHER => ', fatherTag.attributes['style'].nodeValue);
+      console.log('colorRef => ', getRtfRefenceColor(fatherTag.attributes['style']));
+      
+   }
+   if(fatherTag.hasChildNodes() && fatherTag.childNodes.length >1) {
+      let nomeDaTag = fatherTag.childNodes;
+      for(let j = 0; j< nomeDaTag.length; j++) {
+         if(nomeDaTag[j].hasChildNodes())
+            readAllChildInTag(nomeDaTag[j]);
+         else {
+            RTF.push(nomeDaTag[j].nodeValue);
+            console.log(nomeDaTag[j].nodeValue);
+         }
+      }
+      RTF.push(verifyTag('/'+fatherTag.nodeName));
+      console.log(fatherTag.nodeName); 
+   }else {
+      if(fatherTag.childNodes.length>0) {
+         console.log(fatherTag.childNodes[0].nodeValue);
+         RTF.push(fatherTag.childNodes[0].nodeValue);
+         RTF.push(verifyTag('/'+fatherTag.childNodes[0].parentElement.nodeName));
+         console.log(fatherTag.childNodes[0].parentElement.nodeName);
+      }
+   }
+}
+
+function verifyIfExistsChildInTag(tagReference) {
+   return tagReference.hasChildNodes()
+}
+// #####################################
 
 function generateRtfColorTable() {
     colorList[1].forEach(value => rtfColorTableContent += '\\red'+value.red+'\\green'+value.green+'\\blue'+value.blue+'; ');
@@ -123,13 +190,17 @@ function doWhileIndexIsDifferentToLessThan() {
 }
 
 function verifyTag(tagName) {
+   tagName = tagName.toLowerCase();
     var listOfTags = [
         { opening: 'p', openingRtf: '{\\pard ', closing: '/p', closingRtf: ' \\sb70 \\par}\n' },
         { opening: 'b', openingRtf: '{\\b ', closing: '/b', closingRtf: ' }' },
         { opening: 'i', openingRtf: '{\\i ', closing: '/i', closingRtf: ' }' },
         { opening: 'br', openingRtf: ' \\line ', closing: '/br', closingRtf: ' \\line ' },
         { opening: 'strong', openingRtf: '{\\b ', closing: '/strong', closingRtf: ' }' },
-        { opening: 'strong', openingRtf: '{\\b ', closing: '/strong', closingRtf: ' }' }
+        { opening: 'strong', openingRtf: '{\\b ', closing: '/strong', closingRtf: ' }' },
+        { opening: 'em', openingRtf: '{\\em ', closing: '/em', closingRtf: ' }' },
+        { opening: 'u', openingRtf: '{\\u ', closing: '/u', closingRtf: ' }' },
+        { opening: 's', openingRtf: '{\\s ', closing: '/s', closingRtf: ' }' }
     ];
 
     for(var i = 0; i<listOfTags.length; i++) {

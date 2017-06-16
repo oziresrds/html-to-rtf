@@ -1,13 +1,22 @@
 function getRtfRefenceColor(tagOptions) {
     let color, rgb, match, style, regex;
 
+    
+   //  tagOptions = JSON.stringify(tagOptions);
+    console.log('color => ', JSON.stringify(tagOptions));
     regex = new RegExp("color:(.*?);", "g");
     style = color = '';
 
-    while ((match = regex.exec(tagOptions))) color += match[1];
+    while ((match = regex.exec(tagOptions))) {color += match[1]; };
+console.log('color => ', color);
+    if(color == '') {
+       return '';
+    }
 
     color = color.replace(/[\])}[{(rgb ]/g, '');
     rgb = color.split(',');
+
+    console.log('rgb => ', rgb);
 
     style += setColor(rgb);
     return style;    
