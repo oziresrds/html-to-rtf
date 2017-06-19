@@ -33,5 +33,14 @@ twips		=> twips = 15 * pixels | pixels = twips / 15
 \sbN 		=> adiciona espaços verticalmente depois do paragrafo. => ex.: \sb180 => em twips
 \saN		=> after
 
+###### TABLE ######
+\trowd 		=> tabel line
+\trgaphTwips    => tamanho da margin interna => twips is half to gap 
+\cellx1440      => diz que a celula inicia a esquerda e termina a 1440 twips
+\pard\intbl {\b The History Channel}\line (Not available in Canada)\cell  => declara uma celula
+\pard\intbl\cell	=> celula vazia
+
 http://summernote.org/deep-dive/#customization
 https://www.safaribooksonline.com/library/view/rtf-pocket-guide/9781449302047/ch01.html
+
+OBS: 180twips = 3 millimeters

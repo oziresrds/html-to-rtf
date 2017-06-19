@@ -26,11 +26,19 @@
 	<button onclick="convertHtmlToRtf()">Gerar RTF</button>
 
 <div id="content">
-<p style="color:rgb(155, 0, 0);" align="center" class="no-margin"><em class="fff" style="background:red; color:blue;">em text<u>underline</u>vai <s>sobrescrito</s></em><strong>TRAQUE < OSTOMIA</strong></p>
-<p>tag p <b style="color: rgb(155, 44, 5);font-size: 14.5pt;">negrito <em>filho de b</em></b><i>italico</i>pag</p>
-<p style="color:#333333">ghghgh</p>
-<p>fffff<center>texto centralizado</center></p>
+	<p style="color:#056; text-align: center;">Paragrafo 1 => centralizado por STYLE => cor preta por hexadecimal => 3 dígitos => <b>texto em negrito</b></p>
+	<p style="color:#0000ff; text-align: left;">Paragrafo 2 => a esquerda por STYLE => cor azul por hexadecimal => 6 dígitos => <i>texto em negrito</i></p>
+	<p style="color:rgb(0,255,0);" align="right">Paragrafo 3 => a direita por TAG ALIGN => cor verde por rgb <b>texto em negrito e <i>italico</i></b></p>
+	<p>Paragrafo => <s>texto sobrecrito</s> + H<sup>2</sup>O + O<sub>3</sub></p>
+
+	<div style="color:#056; text-align: center;">DIV 1 => centralizado por STYLE => cor preta por hexadecimal => 3 dígitos => <b>texto em negrito</b></div>
+	<div style="color:#0000ff; text-align: left;">DIV 2 => a esquerda por STYLE => cor azul por hexadecimal => 6 dígitos => <i>texto em negrito</i></div>
+	<div style="color:rgb(0,255,0);" align="right">DIV 3 => a direita por TAG ALIGN => cor verde por rgb <b>texto em negrito e <i>italico</i></b></div>
+	<div>DIV => <s>texto sobrecrito</s> + H<sup>2</sup>O + O<sub>3</sub></div>
+	<p>ppp<b><i><s>texto em negrito e italico</s></i></b></p>
 </div>
+
+<!--bug => <b><i>texto em negrito e italico</i></b> -->
 
 </body>
 

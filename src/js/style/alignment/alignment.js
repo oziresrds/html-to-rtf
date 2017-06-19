@@ -1,14 +1,28 @@
-function addRefenceAlignmentInRtfCode(alignment) {
-   addValueInRtfCode(getRtfAlignmentReference(alignment));
+var alignmentReferenceList = [
+  { name: 'center',   reference: '\\qc ' },
+  { name: 'left',     reference: '\\ql ' },
+  { name: 'right',    reference: '\\qr ' },
+  { name: 'justify',  reference: '\\qj ' }
+];
+
+function getAlignmentReferenceList(tagName) {
+  let alignmentReference = '';
+  alignmentReferenceList.forEach(value => {
+    if(value.name == tagName.trim())
+      alignmentReference = value.reference;
+  });
+  return alignmentReference;
 }
 
-function getRtfAlignmentReference(alignment) {
-   let value;
-   switch(alignment) {
-      case 'center': value = '\\qc '; break;
-      case 'left': value = '\\ql '; break;
-      case 'right': value = '\\qr '; break;
-      case 'justify': value = '\\qj '; break;
-   }
-   return value;
+function getRtfAlignmentReference(styleTag) {
+	let alignTag = '', match, regex;
+  if(styleTag.includes('text-align')) {
+    regex = new RegExp("text-align:(.*?);", "g");
+    while ((match = regex.exec(styleTag))) {
+      alignTag += match[1];
+    }
+  }else {
+    alignTag = styleTag;
+  }
+  return getAlignmentReferenceList(alignTag);
 }
