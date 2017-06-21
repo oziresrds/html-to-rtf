@@ -1,12 +1,23 @@
-var colorTable = [{ amount: 0 }, []];
+var colorTable = [{ amount: 2 }, [
+	{ red: 241, green: 241, blue: 241, reference: '\\cf1' },
+	{ red: 255, green: 255, blue: 255, reference: '\\cf2' }
+]];
 
 function getRtfReferenceColor(tagOptions) {
-	console.log("RECeBI => ", tagOptions);
-	let color = '', rgb, match, regex;
+	let color = '', match, regex;
 	regex = new RegExp("color:(.*?);", "g");
 	while ((match = regex.exec(tagOptions))) {
 		color += match[1];
 	}
+	return formatToRgb(color);
+}
+
+function getRtfReferenceColorByTag(color) {
+	return formatToRgb(color);
+}
+
+function formatToRgb(color) {
+	let rgb = '';
 	if (color.includes('rgb')) {
 		color = color.replace(/[\])}[{(rgb ]/g, '');
 		rgb 	= color.split(',');
@@ -16,8 +27,7 @@ function getRtfReferenceColor(tagOptions) {
 		color = color.replace(/[# ]/g, '');
 		rgb 	= convertColorInHexToRgb(color);
 		return getColorInColorTable(rgb);
-	}
-	return '';
+	}	
 }
 
 function convertColorInHexToRgb(hexColor) {

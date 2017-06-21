@@ -39,6 +39,31 @@ twips		=> twips = 15 * pixels | pixels = twips / 15
 \cellx1440      => diz que a celula inicia a esquerda e termina a 1440 twips
 \pard\intbl {\b The History Channel}\line (Not available in Canada)\cell  => declara uma celula
 \pard\intbl\cell	=> celula vazia
+\trcbpatN		=> cor de fundo da linha
+
+##### BORDA ######
+\clbrdrt\brdrw15\brdrs
+\clbrdrl\brdrw15\brdrs
+\clbrdrb\brdrw15\brdrs
+\clbrdrr\brdrw15\brdrs
+=======================> 15 twips de largura
+
+##### Tipos de BOrdas ######
+\brdrs         Simple border
+\brdrdot       Dotted border
+\brdrdash      Dashed border
+\brdrdb        Double border
+
+
+
+
+
+
+
+
+
+
+
 
 http://summernote.org/deep-dive/#customization
 https://www.safaribooksonline.com/library/view/rtf-pocket-guide/9781449302047/ch01.html
