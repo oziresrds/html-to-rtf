@@ -1,4 +1,4 @@
-var rtfHeader = "{\\rtf1\\ansi\\deff1 {\\fonttbl {\\f0 SHOWCARD GOTHIC;}{\\f1 Times New Roman;}}";
+var rtfHeader = "{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}";
 var rtfClosing = "}";
 var rtfColorTable = '{\\colortbl ;';
 var rtfColorTableClosing = '}';
@@ -18,12 +18,13 @@ function buildRtf() {
 
 function getRtfContentReferences() {
 	let rtfReference = '';
+	let addSpaceBetweenTagAndContent = ' ';
 	RtfContentReferences.forEach(value => {
 		if(value.content != null){
 			if(value.tag == true)
-				rtfReference += removeWhiteSpaceInString(value.content) + ' ';
+				rtfReference += removeWhiteSpaceInString(value.content);
 			else
-				rtfReference += removeEnterAndHorizontalTabInString(value.content);
+				rtfReference += addSpaceBetweenTagAndContent + removeEnterAndHorizontalTabInString(value.content);
 		}
 	});
 	return rtfReference;
@@ -92,7 +93,7 @@ function buildCellsLengthOfEachColumn() {
 	let cellGroup = '';
 	let colorListInPositionOne = '1';
 	let colorListInPositionTwo = '2';
-	let color = (currentRowNumber%2 == 0) ? colorListInPositionTwo : colorListInPositionOne;
+	let color = (currentRowNumber%2 == 0) ? colorListInPositionTwo : colorListInPositionTwo;
 	for(let rowNumber = 0; rowNumber < amountOfColumnInTable; rowNumber++)
 		cellGroup += ('\\trcbpat'+color+'\\clbrdrt \\brdrw15\\brdrs\\clbrdrl \\brdrw15\\brdrs\\clbrdrb \\brdrw15\\brdrs\\clbrdrr \\brdrw15\\brdrs\\cellx'+(cellLength*rowNumber+cellLength));
 	currentRowNumber++;
@@ -102,10 +103,19 @@ function buildCellsLengthOfEachColumn() {
 function verifyExistsAttributes(attributes) {
 	if(attributes['style'])
 		verifyExistingStyles(attributes['style'].nodeValue);
+	if(attributes['class'])
+		ifExistsStylesInClassAddInRtfCode(attributes['class'].nodeValue)
 	if(attributes['color'])
 		RtfContentReferences.push({ content: getRtfReferenceColorByTag(attributes['color'].nodeValue), tag: true });
 	if(attributes['align'])
 		addReferenceAlignmentInRtfCode(attributes['align'].nodeValue);
+}
+
+function ifExistsStylesInClassAddInRtfCode(classList) {
+	classList = classList.split(' ');
+	classList.forEach(value => {
+		RtfContentReferences.push({ content: getRtfPropertyNameReference(value), tag: true });
+	});
 }
 
 function verifyExistingStyles(styleTag) {

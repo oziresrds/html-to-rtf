@@ -19,20 +19,30 @@
 	<script src="./src/js/style/color/color.js"></script>
 	<script src="./src/js/style/alignment/alignment.js"></script>
 	<script src="./src/js/tags/allowed-tags.js"></script>
+	<script src="./src/js/style/allowed-style-tags.js"></script>
+	<script src="./src/js/style/style.js"></script>
 	<script src="./src/js/editor-pacs.js"></script>
+	<style>
+		.titulo {
+			color: rgb(0, 0, 255);
+			font-size: 60px;
+			text-align: center;
+		}
+	</style>
 </head>
 
 <body>
 	<button onclick="convertHtmlToRtf()">Gerar RTF</button>
 
 <div id="content">
+	<h1 class="titulo">Titulo &gt;&gt; preto</h1>
 	<p>
-		<font color="#ff0000">Titulo &gt;&gt; vermelho</font>
+		<font color="#ff0000"><h1>Titulo &gt;&gt; vermelho</h1></font>
 	</p>
-	<p>paragrafoInicio &gt;&gt; huhkihafkjkdfjdk &gt;&gt; <b>texto em negrito</b> &gt;&gt;
+	<p style="color:#000">paragrafoInicio &gt;&gt; huhkihafkjkdfjdk &gt;&gt; <b>texto em negrito</b> &gt;&gt;
 		<u>texto com underline</u>&nbsp;fimParagrafo</p>
 	<p><br></p>
-	<table class="table table-bordered">
+	<table>
 		<tbody>
 			<tr>
 				<td>
@@ -53,33 +63,19 @@
 				<td>conteudo3<br></td>
 				<td>conteudo1<br></td>
 			</tr>
-			<tr>
-				<td>conteudo1</td>
-				<td>conteudo2<br></td>
-				<td>conteudo3<br></td>
-				<td>conteudo1<br></td>
-			</tr>
-			<tr>
-				<td>conteudo1</td>
-				<td>conteudo2<br></td>
-				<td>conteudo3<br></td>
-				<td>conteudo1<br></td>
-			</tr>
-			<tr>
-				<td>conteudo1</td>
-				<td>conteudo2<br></td>
-				<td>conteudo3<br></td>
-				<td>conteudo1<br></td>
-			</tr>
-			<tr>
-				<td>conteudo1</td>
-				<td>conteudo2<br></td>
-				<td>conteudo3<br></td>
-				<td>conteudo1<br></td>
-			</tr>
 		</tbody>
 	</table>
 	<p><br></p>
+	<ul>
+		<li>lista nao ordenada 1</li>
+		<li>lista nao ordenada 2</li>
+		<li>lista nao ordenada 3</li>
+	</ul>
+	<ol>
+		<li>lista ordenada</li>
+		<li>lista ordenada</li>
+		<li>lista ordenada</li>
+	</ol>
 </div>
 
 <!--bug1 consertar as colunas de tr para td-->

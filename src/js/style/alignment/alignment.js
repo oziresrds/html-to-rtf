@@ -1,8 +1,8 @@
 var alignmentReferenceList = [
-  { name: 'center',   reference: '\\qc ' },
-  { name: 'left',     reference: '\\ql ' },
-  { name: 'right',    reference: '\\qr ' },
-  { name: 'justify',  reference: '\\qj ' }
+  { name: 'center',   reference: '\\qc' },
+  { name: 'left',     reference: '\\ql' },
+  { name: 'right',    reference: '\\qr' },
+  { name: 'justify',  reference: '\\qj' }
 ];
 
 function getAlignmentReferenceList(tagName) {
