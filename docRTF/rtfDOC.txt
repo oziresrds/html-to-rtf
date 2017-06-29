@@ -54,6 +54,12 @@ twips		=> twips = 15 * pixels | pixels = twips / 15
 \brdrdash      Dashed border
 \brdrdb        Double border
 
+#### lista #####
+\sa => espacos depois
+\sl => espaco entre
+\pnf => font number
+\f1 => firt line ident
+
 
 
 

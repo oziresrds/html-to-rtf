@@ -26,3 +26,7 @@ function getRtfAlignmentReference(styleTag) {
   }
   return getAlignmentReferenceList(alignTag);
 }
+
+exports.getRtfAlignmentReference = function(styleTag) {
+  return getRtfAlignmentReference(styleTag);
+}
