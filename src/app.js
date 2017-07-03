@@ -1,8 +1,8 @@
 const http      = require('http');
-const juice 		= require('juice');
 const Rtf 			= require('./modules/rtf.class');
+const fs 				= require('fs');
 
-var html = `
+var htmlOfExample = `
 <head>
 	<style>
 		.test {
@@ -14,6 +14,8 @@ var html = `
 <body>
 <div id="content">
 	<p style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</p>
+	<p style="color:rgb(255,0,0);" align="right">paragrafo vermelho => right with tag</p>
+	<p style="color:rgb(0,0,255); text-align:center;">paragrafo blue => center with style</p>
 	<table>
 			<tbody>
 				<tr>
@@ -41,7 +43,10 @@ var html = `
 </div>
 </body>`;
 
-var result = juice(html);
 var rtf = new Rtf();
-
-console.log('==>',rtf.convertHtmlToRtf(result));
+fs.writeFile('./files/current.rtf', rtf.convertHtmlToRtf(htmlOfExample), (err) => {
+  if (err) {
+		console.log('The file does not saved.');
+	}
+  console.log('The file has been saved! => files/current.rtf');
+});

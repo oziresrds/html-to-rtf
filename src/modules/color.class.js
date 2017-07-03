@@ -1,5 +1,6 @@
 const RTF_COLOR_TABLE_OPENING = '{\\colortbl ;';
 const RTF_COLOR_TABLE_CLOSING = '}';
+const MyString                = require('./my-string.class');
 var colorTable = [{ amount: 0 }, []];
 
 class Color {
@@ -7,20 +8,7 @@ class Color {
     return RTF_COLOR_TABLE_OPENING + this.getAllColorsDeclaredInColorTable() + RTF_COLOR_TABLE_CLOSING;
   }
 
-  static getRtfReferenceColor(tagOptions) {
-    let color = '', match, regex;
-    regex = new RegExp("color:(.*?)[\)/]", "g");
-    while ((match = regex.exec(tagOptions))) {
-      color += match[1];
-    }
-    return this.formatToRgb(color);
-  }
-
-  static getRtfReferenceColorByTag(color) {
-    return this.formatToRgb(color);
-  }
-
-  static formatToRgb(color) {
+  static getRtfReferenceColor(color) {
     let rgb = '';
     if (color.includes('rgb')) {
       color = color.replace(/[\])}[{(rgb ]/g, '');
@@ -32,30 +20,16 @@ class Color {
       rgb 	= this.convertColorInHexToRgb(color);
       return this.getColorInColorTable(rgb);
     }	
+    return '';
   }
 
   static convertColorInHexToRgb(hexColor) {
     let rgb = [];
     hexColor = (hexColor.length == 3) ? hexColor+''+hexColor : hexColor;
-    rgb[2] = Math.pow(16, 1) * this.convertOneCharInHexToDec(hexColor[4]) + Math.pow(16, 0) * this.convertOneCharInHexToDec(hexColor[5]);
-    rgb[1] = Math.pow(16, 1) * this.convertOneCharInHexToDec(hexColor[2]) + Math.pow(16, 0) * this.convertOneCharInHexToDec(hexColor[3]);
-    rgb[0] = Math.pow(16, 1) * this.convertOneCharInHexToDec(hexColor[0]) + Math.pow(16, 0) * this.convertOneCharInHexToDec(hexColor[1]);
+    rgb[2] = Math.pow(16, 1) * MyString.convertOneCharInHexToDec(hexColor[4]) + Math.pow(16, 0) * MyString.convertOneCharInHexToDec(hexColor[5]);
+    rgb[1] = Math.pow(16, 1) * MyString.convertOneCharInHexToDec(hexColor[2]) + Math.pow(16, 0) * MyString.convertOneCharInHexToDec(hexColor[3]);
+    rgb[0] = Math.pow(16, 1) * MyString.convertOneCharInHexToDec(hexColor[0]) + Math.pow(16, 0) * MyString.convertOneCharInHexToDec(hexColor[1]);
     return rgb;
-  }
-
-  static convertOneCharInHexToDec(value) {
-    let number = '';
-    value = (parseInt(value) >= 0 && parseInt(value) <= 9) ? value : value.toUpperCase();
-    switch(value){
-      case 'A': number = 10; break;
-      case 'B': number = 11; break;
-      case 'C': number = 12; break;
-      case 'D': number = 13; break;
-      case 'E': number = 14; break;
-      case 'F': number = 15; break;
-      default : number = value;
-    }
-    return parseInt(number);
   }
 
   static getColorInColorTable(rgb) {

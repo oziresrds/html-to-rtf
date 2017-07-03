@@ -10,16 +10,12 @@ class Style {
     return Color.getRtfReferenceColor(value);
   }
 
-  static getRtfReferenceColorByTag(value) {
-    return Color.getRtfReferenceColorByTag(value);
-  }
-
   static getRtfColorTable() {
     return Color.getRtfColorTable();
   }
 
   static getRtfAlignmentReference(value) {
-    Alignment.getRtfAlignmentReference(value);
+    return Alignment.getRtfAlignmentReference(value);
   }
 
   static getRtfFontSizeReference(value) {
@@ -33,9 +29,9 @@ class Style {
     AllowedStyleTags.getAllowedTags().forEach(value => {
       if($(fictitiousTagWithTruthStyle).css(value.propertyName) != undefined) {
         switch(value.propertyName) {
-          case 'color': listOfRtfReferences       += Style.getRtfReferenceColorByTag($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
-          case 'font-size': listOfRtfReferences   += Style.getRtfFontSizeReference($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
-          case 'text-align': listOfRtfReferences  += Style.getAlignmentReferenceList($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
+          case 'color': listOfRtfReferences       += this.getRtfReferenceColor($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
+          case 'font-size': listOfRtfReferences   += this.getRtfFontSizeReference($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
+          case 'text-align': listOfRtfReferences  += this.getRtfAlignmentReference($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
         }
       }
     });

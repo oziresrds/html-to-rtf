@@ -6,26 +6,15 @@ var alignmentReferenceList = [
 ];
 
 class Alignment {
-  static getAlignmentReferenceList(tagName) {
+  static getRtfAlignmentReference(propertyName) {
+    console.log('RECEBI=> ', propertyName);
     let alignmentReference = '';
     alignmentReferenceList.forEach(value => {
-      if(value.name == tagName.trim())
+      if(value.name == propertyName.trim())
         alignmentReference = value.reference;
     });
+    console.log('RETURN=> ', alignmentReference);
     return alignmentReference;
-  }
-
-  static getRtfAlignmentReference(styleTag) {
-    let alignTag = '', match, regex;
-    if(styleTag.includes('text-align')) {
-      regex = new RegExp("text-align:(.*?);", "g");
-      while ((match = regex.exec(styleTag))) {
-        alignTag += match[1];
-      }
-    }else {
-      alignTag = styleTag;
-    }
-    return this.getAlignmentReferenceList(alignTag);
   }
 }
 module.exports = Alignment;

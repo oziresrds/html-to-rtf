@@ -3,6 +3,7 @@ const Style       = require('./style.class');
 const AllowedTags = require('./allowed-tags.class');
 const Table       = require('./table.class');
 const MyString    = require('./my-string.class');
+const juice 		  = require('juice');
 
 class Rtf {
   constructor() { 
@@ -14,11 +15,16 @@ class Rtf {
   }
 
   convertHtmlToRtf(html) {
-    var $ = cheerio.load(html);
-    let treeOfTags = $('#content').children();
-    for (let i = 0; i < treeOfTags.length; i++)
-      this.readAllChildsInTag(treeOfTags[i]);
-    return this.buildRtf();
+    var $ = cheerio.load(juice(html));
+    if($('#content').length > 0) {
+      let treeOfTags = $('#content').children();
+      for (let i = 0; i < treeOfTags.length; i++)
+        this.readAllChildsInTag(treeOfTags[i]);
+      return this.buildRtf();
+    } else {
+      console.log("The FatherTag need of an id called content. The html received don't have this id.");
+      return "########## ERRO #########\n The FatherTag need of an id called content. The html received don't have this id.\n########## ERRO #########";
+    }
   }
 
   buildRtf() {
@@ -32,10 +38,8 @@ class Rtf {
     this.RtfContentReferences.forEach(value => {
       if(value.tag == true && value.content != undefined)
         rtfReference += (value.content).replace(/ /g, '');
-      if(value.tag == false) {
-        console.log('CONTEUDO=> ', MyString.remove_Enter_HorizontalTab_LineFeed(value.content));
+      if(value.tag == false)
         rtfReference += addSpaceBetweenTagAndContent + MyString.remove_Enter_HorizontalTab_LineFeed(value.content);
-      }
     });
     return rtfReference;
   }

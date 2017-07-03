@@ -22,7 +22,7 @@ var listOfAllowedTags = [
    { opening: 'table',      openingRtf: '{',                   closing: '/table',      closingRtf: '}' },
    { opening: 'td',         openingRtf: '{\\pard\\intbl\\qc',  closing: '/td',         closingRtf: '\\cell}' },
    { opening: 'th',         openingRtf: '{\\pard\\intbl\\qc',  closing: '/th',         closingRtf: '\\cell}' },
-   { opening: 'tr',         openingRtf: '{\\trowd\\trgaph0',   closing: '/tr',         closingRtf: '\\row}' },
+   { opening: 'tr',         openingRtf: '{\\trowd\\trgaph10',  closing: '/tr',         closingRtf: '\\row}' },
    { opening: 'u',          openingRtf: '{\\ul',               closing: '/u',          closingRtf: '}' },
    { opening: 'ul',         openingRtf: '{{\\*\\pn\\pnlvlblt\\pnf1\\pnindent0{\\pntxtb\\\'B7}}\\fi-360\\li720\\sa200\\sl276\\slmult1\\lang22\\f0\\fs22',  closing: '/ul',   closingRtf: '}' }
 ];
