@@ -1,9 +1,9 @@
-const cheerio     = require('cheerio');
-const Style       = require('./style.class');
-const AllowedTags = require('./allowed-tags.class');
-const Table       = require('./table.class');
-const MyString    = require('./my-string.class');
-const juice 		  = require('juice');
+const cheerio         = require('cheerio');
+const Style           = require('../style/style.class');
+const AllowedHtmlTags = require('../allowed-tags/allowed-html-tags.class');
+const Table           = require('../table/table.class');
+const MyString        = require('../string/my-string.class');
+const juice 		      = require('juice');
 
 class Rtf {
   constructor() { 
@@ -96,11 +96,11 @@ class Rtf {
   }
 
   addOpeningTagInRtfCode(tag) {
-    this.RtfContentReferences.push({ content: AllowedTags.getRtfReferenceTag(tag), tag: true });
+    this.RtfContentReferences.push({ content: AllowedHtmlTags.getRtfReferenceTag(tag), tag: true });
   }
 
   addClosingFatherTagInRtfCode(closingFatherTag) {
-    this.RtfContentReferences.push({ content: AllowedTags.getRtfReferenceTag('/' + closingFatherTag), tag: true });
+    this.RtfContentReferences.push({ content: AllowedHtmlTags.getRtfReferenceTag('/' + closingFatherTag), tag: true });
   }
 
   addContentOfTagInRtfCode(contentOfTag) {

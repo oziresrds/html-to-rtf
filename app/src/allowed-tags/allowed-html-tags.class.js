@@ -27,7 +27,7 @@ var listOfAllowedTags = [
    { opening: 'ul',         openingRtf: '{{\\*\\pn\\pnlvlblt\\pnf1\\pnindent0{\\pntxtb\\\'B7}}\\fi-360\\li720\\sa200\\sl276\\slmult1\\lang22\\f0\\fs22',  closing: '/ul',   closingRtf: '}' }
 ];
 
-class AllowedTags {
+class AllowedHtmlTags {
   static getRtfReferenceTag(tagName) {
     tagName = tagName.toLowerCase();
     for (let i = 0; i < listOfAllowedTags.length; i++) {
@@ -39,4 +39,4 @@ class AllowedTags {
     return '';
   }
 }
-module.exports = AllowedTags;
+module.exports = AllowedHtmlTags;

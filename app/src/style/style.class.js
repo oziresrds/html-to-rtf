@@ -1,9 +1,9 @@
 const cheerio   = require('cheerio');
 const $         = cheerio.load('');
-const Color     = require('./color.class');
-const Alignment = require('./alignment.class');
-const FontSize  = require('./font-size.class');
-const AllowedStyleTags = require('./allowed-style-tags.class');
+const Color     = require('../color/color.class');
+const Alignment = require('../alignment/alignment.class');
+const FontSize  = require('../font-size/font-size.class');
+const AllowedStyleTags = require('../allowed-tags/allowed-style-tags.class');
 
 class Style {
   static getRtfReferenceColor(value) {

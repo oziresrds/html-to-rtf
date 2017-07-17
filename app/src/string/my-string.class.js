@@ -24,5 +24,6 @@ class MyString {
     }
     return parseInt(number);
   }
+
 }
 module.exports = MyString;

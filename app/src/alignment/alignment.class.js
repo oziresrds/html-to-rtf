@@ -7,13 +7,11 @@ var alignmentReferenceList = [
 
 class Alignment {
   static getRtfAlignmentReference(propertyName) {
-    console.log('RECEBI=> ', propertyName);
-    let alignmentReference = '';
+    let alignmentReference = undefined;
     alignmentReferenceList.forEach(value => {
       if(value.name == propertyName.trim())
         alignmentReference = value.reference;
     });
-    console.log('RETURN=> ', alignmentReference);
     return alignmentReference;
   }
 }

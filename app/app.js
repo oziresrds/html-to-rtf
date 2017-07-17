@@ -1,5 +1,5 @@
 const http      = require('http');
-const Rtf 			= require('./modules/rtf.class');
+const Rtf 			= require('./src/rtf/rtf.class');
 const fs 				= require('fs');
 
 var htmlOfExample = `

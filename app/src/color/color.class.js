@@ -1,6 +1,6 @@
 const RTF_COLOR_TABLE_OPENING = '{\\colortbl ;';
 const RTF_COLOR_TABLE_CLOSING = '}';
-const MyString                = require('./my-string.class');
+const MyString                = require('../string/my-string.class');
 var colorTable = [{ amount: 0 }, []];
 
 class Color {
@@ -9,23 +9,24 @@ class Color {
   }
 
   static getRtfReferenceColor(color) {
-    let rgb = '';
-    if (color.includes('rgb')) {
-      color = color.replace(/[\])}[{(rgb ]/g, '');
-      rgb 	= color.split(',');
-      return this.getColorInColorTable(rgb);
-    }
-    else if(color.includes('#')) {
-      color = color.replace(/[# ]/g, '');
-      rgb 	= this.convertColorInHexToRgb(color);
-      return this.getColorInColorTable(rgb);
-    }	
-    return '';
+    if (color.includes('rgb'))
+      return this.getColorInColorTable(this.getRgbValues(color));
+
+    if(color.includes('#'))
+      return this.getColorInColorTable(this.convertColorInHexToRgb(color));
+      
+    return undefined;
+  }
+
+  static getRgbValues(color) {
+    color = color.replace(/[\])}[{(rgb:; ]/g, '');
+    return color.split(',');
   }
 
   static convertColorInHexToRgb(hexColor) {
     let rgb = [];
-    hexColor = (hexColor.length == 3) ? hexColor+''+hexColor : hexColor;
+    hexColor = hexColor.replace(/[#; ]/g, '');
+    hexColor = (hexColor.length == 3) ? hexColor[0]+''+hexColor[0]+''+hexColor[1]+''+hexColor[1]+''+hexColor[2]+''+hexColor[2] : hexColor;
     rgb[2] = Math.pow(16, 1) * MyString.convertOneCharInHexToDec(hexColor[4]) + Math.pow(16, 0) * MyString.convertOneCharInHexToDec(hexColor[5]);
     rgb[1] = Math.pow(16, 1) * MyString.convertOneCharInHexToDec(hexColor[2]) + Math.pow(16, 0) * MyString.convertOneCharInHexToDec(hexColor[3]);
     rgb[0] = Math.pow(16, 1) * MyString.convertOneCharInHexToDec(hexColor[0]) + Math.pow(16, 0) * MyString.convertOneCharInHexToDec(hexColor[1]);
@@ -53,7 +54,7 @@ class Color {
   static addColorInColorTable(rgb) {
     let rtfReferenceColor, amountColorPosition = 0, colorsPosition = 1;
     colorTable[amountColorPosition].amount++;
-    rtfReferenceColor = '\\cf' + colorTable[amountColorPosition].amount + ' ';
+    rtfReferenceColor = '\\cf' + colorTable[amountColorPosition].amount;
     colorTable[colorsPosition].push({ red: rgb[0], green: rgb[1], blue: rgb[2], reference: rtfReferenceColor });
   }
 
@@ -72,5 +73,4 @@ class Color {
     return colorTableContent;
   }
 }
-
 module.exports = Color;
