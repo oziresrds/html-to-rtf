@@ -1,8 +1,9 @@
 const should  = require('should');
 const Color   = require('./color.class');
 
-describe('ColorTest => Attention! <= Have a stack of dependency in each test', () => {
+describe('ColorTest', () => {
   describe('getRtfReferenceColor()', () => {
+    before(() => Color.cleanColorTable());
     it('RGB', () => {
       should(Color.getRtfReferenceColor('rgb(255,0,0)')).be.equal('\\cf1');
       should(Color.getRtfReferenceColor('rgb(255,0,0)')).be.equal('\\cf1');
@@ -35,14 +36,20 @@ describe('ColorTest => Attention! <= Have a stack of dependency in each test', (
   });
 
   describe('getColorInColorTable()', () => {
+    before(() => Color.cleanColorTable());
     it('Should return rtf reference color', () => {
-      should(Color.getColorInColorTable(['255', '188', '0'])).be.equal('\\cf5');
-      should(Color.getColorInColorTable(['238', '238', '238'])).be.equal('\\cf4');
+      should(Color.getColorInColorTable(['255', '188', '0'])).be.equal('\\cf1');
+      should(Color.getColorInColorTable(['238', '238', '238'])).be.equal('\\cf2');
       Color.co
     });
   });
 
   describe('verifyIfColorExistsInColorTable()', () => {
+    before(() => {
+      Color.cleanColorTable();
+      Color.addColorInColorTable(['255', '188', '0']);
+    });
+
     it('Should return true or false', () => {
       should(Color.verifyIfColorExistsInColorTable(['0', '55', '55'])).be.Boolean().and.equal(false);
       should(Color.verifyIfColorExistsInColorTable(['255', '188', '0'])).be.Boolean().and.equal(true);
@@ -50,13 +57,22 @@ describe('ColorTest => Attention! <= Have a stack of dependency in each test', (
   });
 
   describe('addColorInColorTable()', () => {
-    before(() => Color.addColorInColorTable(['255', '255', '255']));
+    before(() => {
+      Color.cleanColorTable();
+      Color.addColorInColorTable(['255', '255', '255']);
+    });
+
     it('Add color and check if was saved', () => {
       should(Color.verifyIfColorExistsInColorTable(['255', '255', '255'])).be.Boolean().and.equal(true);
     });
   });
 
   describe('getRtfReferenceColorInColorTable()', () => {
+    before(() => {
+      Color.cleanColorTable();
+      Color.addColorInColorTable(['255', '0', '0']);
+    });
+
     it('Should return a reference already declared', () => {
       should(Color.getRtfReferenceColorInColorTable(['255', '0', '0'])).be.equal('\\cf1');
     });
@@ -67,15 +83,47 @@ describe('ColorTest => Attention! <= Have a stack of dependency in each test', (
   });
 
   describe('getAllColorsDeclaredInColorTable()', () => {
+    before(() => {
+      Color.cleanColorTable();
+      Color.addColorInColorTable(['255', '0', '0']);
+      Color.addColorInColorTable(['255', '80', '0']);
+      Color.addColorInColorTable(['255', '0', '20']);
+    });
+
     it('Should return a list with all colors declared in all tests', () => {
-      should(Color.getAllColorsDeclaredInColorTable()).be.an.String();
-      should(Color.getAllColorsDeclaredInColorTable()).be.equal(`\\red255\\green0\\blue0;\\red255\\green25\\blue0;\\red51\\green51\\blue51;\\red238\\green238\\blue238;\\red255\\green188\\blue0;\\red255\\green255\\blue255;`);
+      should(Color.getAllColorsDeclaredInColorTable()).be.equal('\\red255\\green0\\blue0;\\red255\\green80\\blue0;\\red255\\green0\\blue20;');
     });
   });
 
   describe('getRtfColorTable()', () => {
+    before(() => {
+      Color.cleanColorTable();
+      Color.addColorInColorTable(['255', '0', '0']);
+      Color.addColorInColorTable(['255', '80', '0']);
+      Color.addColorInColorTable(['255', '0', '20']);
+    });
+
     it('Should return all colors declared with opening and closing tags of rtf', () => {
-      should(Color.getRtfColorTable()).be.equal('{\\colortbl ;\\red255\\green0\\blue0;\\red255\\green25\\blue0;\\red51\\green51\\blue51;\\red238\\green238\\blue238;\\red255\\green188\\blue0;\\red255\\green255\\blue255;}');
+      should(Color.getRtfColorTable()).be.equal('{\\colortbl ;\\red255\\green0\\blue0;\\red255\\green80\\blue0;\\red255\\green0\\blue20;}');
+    });
+  });
+
+  describe('cleanColorTable()', () => {
+    before(() => {
+      Color.addColorInColorTable([255, 88, 10]);
+      Color.cleanColorTable();
+    });
+    it('Should return colorTable empty', () => {
+      should(Color.getColorTable()[0].amount).be.equal(0);
+      should(Color.getColorTable()[1].length).be.equal(0);
+    });
+  });
+
+  describe('getColorTable()', () => {
+    before(() => Color.cleanColorTable());
+    it('Should return colorTable default', () => {
+      should(Color.getColorTable()[0].amount).be.equal(0);
+      should(Color.getColorTable()[1].length).be.equal(0);
     });
   });
 

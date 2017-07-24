@@ -72,5 +72,14 @@ class Color {
     colorTable[1].forEach(value => colorTableContent += '\\red' + value.red + '\\green' + value.green + '\\blue' + value.blue + ';');
     return colorTableContent;
   }
+
+  static cleanColorTable() {
+    colorTable[0].amount = 0;
+    colorTable[1] = [];
+  }
+
+  static getColorTable() {
+    return colorTable;
+  }
 }
 module.exports = Color;

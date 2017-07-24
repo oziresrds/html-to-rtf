@@ -3,7 +3,7 @@ const $         = cheerio.load('');
 const Color     = require('../color/color.class');
 const Alignment = require('../alignment/alignment.class');
 const FontSize  = require('../font-size/font-size.class');
-const AllowedStyleTags = require('../allowed-tags/allowed-style-tags.class');
+const AllowedStyleProperties = require('../allowed-style-properties/allowed-style-properties.class');
 
 class Style {
   static getRtfReferenceColor(value) {
@@ -23,10 +23,13 @@ class Style {
   }
 
   static getRtfReferencesInStyleProperty(styleValue) {
+    if(styleValue == '')
+      return undefined;
+
     let fictitiousTagWithTruthStyle = "<span style='"+styleValue+"'></span>";
     let listOfRtfReferences = '';
     
-    AllowedStyleTags.getAllowedTags().forEach(value => {
+    AllowedStyleProperties.getAllowedTags().forEach(value => {
       if($(fictitiousTagWithTruthStyle).css(value.propertyName) != undefined) {
         switch(value.propertyName) {
           case 'color': listOfRtfReferences       += this.getRtfReferenceColor($(fictitiousTagWithTruthStyle).css(value.propertyName)); break;
@@ -35,6 +38,10 @@ class Style {
         }
       }
     });
+
+    if(listOfRtfReferences == '')
+      return undefined;
+      
     return listOfRtfReferences;
   }
 }
