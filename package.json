@@ -1,5 +1,5 @@
 {
-  "name": "serizo@html-to-rtf",
+  "name": "html-to-rtf",
   "version": "1.0.0",
   "author": {
     "name": "Ozires R.S.O.F",
@@ -25,6 +25,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://oziresRSOF@bitbucket.org/oziresRSOF/serizo-html-to-rtf.git"
+    "url": "git+https://oziresRSOF@bitbucket.org/oziresRSOF/html-to-rtf.git"
   }
 }
