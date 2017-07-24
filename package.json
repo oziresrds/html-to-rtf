@@ -1,14 +1,18 @@
 {
-  "name": "html-to-rtf-serizo",
+  "name": "serizo@html-to-rtf",
   "version": "1.0.0",
-  "description": "",
+  "author": {
+    "name": "Ozires R.S.O.F",
+    "email": "oziresrds@yahoo.com.br"
+  },
+  "description": "Convert html to rtf format in the server",
+  "readmeFilename": "README.md",
+  "keywords": ["html", "rtf", "convert", "server", "node", "javascript"],
+  "license": "MIT",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.1",
-    "awesome-typescript-loader": "^3.1.3",
-    "juice": "^4.1.0",
-    "ts-loader": "^2.1.0",
-    "typescript": "^2.3.4"
+    "juice": "^4.1.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -17,13 +21,10 @@
     "should": "^11.2.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "gulp tests"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://oziresRSOF@bitbucket.org/oziresRSOF/html-to-rtf-serizo.git"
-  },
-  "author": "Ozires R.S.O.F",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/oziresRSOF/editorpacs#readme"
+    "url": "git+https://oziresRSOF@bitbucket.org/oziresRSOF/serizo-html-to-rtf.git"
+  }
 }
