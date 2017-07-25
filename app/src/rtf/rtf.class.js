@@ -4,7 +4,7 @@ const AllowedHtmlTags = require('../allowed-html-tags/allowed-html-tags.class');
 const Table           = require('../table/table.class');
 const MyString        = require('../string/my-string.class');
 const juice 		      = require('juice');
-const FS 				      = require('fs');
+const fs 				      = require('fs');
 
 class Rtf {
   constructor() { 
