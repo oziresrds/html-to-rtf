@@ -18,14 +18,13 @@ npm install html-to-rtf
 
 ## Getting Started
 
+Go to the folder html-to-rtf/app in the node_modules and run:
 ```
-const Rtf = require('./src/rtf/rtf.class');
-
-let html = '<html><body><p style='color: rgb(255, 0, 0); text-align: center;'>my first <b>paragraph</b></p></body></html>';
-let rtf = new Rtf();
-
-console.log(rtf.convertHtmlToRtf(html));
+node app.js
 ```
+
+Into the app.js already have an example and it will be saved in current.rtf in the folder files into the module.
+
 
 ## Running the tests
 
