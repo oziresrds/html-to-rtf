@@ -4,6 +4,7 @@ const AllowedHtmlTags = require('../allowed-html-tags/allowed-html-tags.class');
 const Table           = require('../table/table.class');
 const MyString        = require('../string/my-string.class');
 const juice 		      = require('juice');
+const FS 				      = require('fs');
 
 class Rtf {
   constructor() { 
@@ -100,5 +101,16 @@ class Rtf {
   addSpaceAroundString(contentOfTag) {
     return ` ${ contentOfTag } `;
   }
+
+  // Don't has a test
+  saveInFolderFiles(rtfCode) {
+    fs.writeFile('./../../files/current.rtf', rtfCode, (err) => {
+      if (err) 
+        console.log('The file does not saved.');
+
+      console.log('The file has been saved! => files/current.rtf');
+    });
+  }
+
 }
 module.exports = Rtf;

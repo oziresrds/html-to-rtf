@@ -1,6 +1,4 @@
-const http      = require('http');
 const Rtf 			= require('./src/rtf/rtf.class');
-const fs 				= require('fs');
 
 var htmlOfExample = `
 <head>
@@ -44,9 +42,5 @@ var htmlOfExample = `
 </body>`;
 
 var rtf = new Rtf();
-fs.writeFile('./files/current.rtf', rtf.convertHtmlToRtf(htmlOfExample), (err) => {
-  if (err) {
-		console.log('The file does not saved.');
-	}
-  console.log('The file has been saved! => files/current.rtf');
-});
+rtf.saveInFolderFiles(rtf.convertHtmlToRtf(htmlOfExample));
+
