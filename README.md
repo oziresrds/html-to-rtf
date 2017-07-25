@@ -33,14 +33,6 @@ console.log(rtf.convertHtmlToRtf(html));
 gulp tests
 ```
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
 ## Author
 
 * **Ozires R.S.O.F**
