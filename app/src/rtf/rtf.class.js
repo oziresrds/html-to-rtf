@@ -102,17 +102,5 @@ class Rtf {
     return ` ${ contentOfTag } `;
   }
 
-  // Don't has a test
-  saveInFolderFiles(rtfCode) {
-    fs.writeFile('./files/current.rtf', rtfCode, (err) => {
-      if (err) {
-        console.log('The file does not saved.');
-        return;
-      }
-
-      console.log('The file has been saved! => files/current.rtf');
-    });
-  }
-
 }
 module.exports = Rtf;

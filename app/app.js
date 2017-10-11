@@ -41,6 +41,6 @@ var htmlOfExample = `
 </div>
 </body>`;
 
-var rtf = new Rtf();
-rtf.saveInFolderFiles(rtf.convertHtmlToRtf(htmlOfExample));
+let htmlToRtf = new Rtf();
+htmlToRtf.convertHtmlToRtf(htmlOfExample);
 
