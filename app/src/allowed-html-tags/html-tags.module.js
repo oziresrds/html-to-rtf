@@ -3,6 +3,7 @@ module.exports = [
    { opening: 'br',         openingRtf: '\\line',              closing: 'br/',         closingRtf: '\\line' },
    { opening: 'center',     openingRtf: '{\\pard\\qr',         closing: '/center',     closingRtf: '\\par}' },
    { opening: 'div',        openingRtf: '{\\pard',             closing: '/div',        closingRtf: '\\sb70\\par}' },
+   { opening: 'em',          openingRtf: '{\\b',                closing: '/em',          closingRtf: '}' },
    { opening: 'font',       openingRtf: '{',                   closing: '/font',       closingRtf: '}' },
    { opening: 'h1',         openingRtf: '{\\pard',             closing: '/h1',         closingRtf: '\\sb70\\par}' },
    { opening: 'h2',         openingRtf: '{\\pard',             closing: '/h2',         closingRtf: '\\sb70\\par}' },
