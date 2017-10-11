@@ -1,4 +1,4 @@
-const Rtf 			= require('./src/rtf/rtf.class');
+const Rtf = require('./src/rtf/rtf.class');
 
 var htmlOfExample = `
 <head>
