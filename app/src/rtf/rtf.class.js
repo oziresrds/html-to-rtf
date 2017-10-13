@@ -46,6 +46,9 @@ class Rtf {
       if(fatherTag.name.toLowerCase() == 'tr')
         this.addReferenceTagInRtfCode(this.Table.buildCellsLengthOfEachColumn());
 
+      if(fatherTag.name.toLowerCase() == 'mark')
+        this.setHighlightInRtf();
+
       (fatherTag.children).forEach((child, index) => {
         if (child.type != 'text')
           this.readAllChildsInTag(child);
@@ -100,6 +103,19 @@ class Rtf {
 
   addSpaceAroundString(contentOfTag) {
     return ` ${ contentOfTag } `;
+  }
+
+  setHighlightInRtf() {
+    let rtfReferenceColor = Style.getRtfReferenceColor('rgb(255, 255, 0)');
+    let referenceColorNumber = rtfReferenceColor.match(/[0-9]+/);
+    this.addReferenceTagInRtfCode('\\highlight' + referenceColorNumber.toString());
+  }
+
+  saveRtfInFile(path, value) {
+    fs.writeFile(path, value, (err) => {
+      if (err) throw err;
+      console.log('The file has been saved!');
+    });
   }
 
 }

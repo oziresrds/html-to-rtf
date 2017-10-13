@@ -13,6 +13,7 @@ module.exports = [
    { opening: 'h6',         openingRtf: '{\\pard',             closing: '/h6',         closingRtf: '\\sb70\\par}' },
    { opening: 'i',          openingRtf: '{\\i',                closing: '/i',          closingRtf: '}' },
    { opening: 'li',         openingRtf: '{\\pntext\\tab}',     closing: '/li',         closingRtf: '\\par' },
+   { opening: 'mark',       openingRtf: '{',                   closing: '/mark',      closingRtf: '}' },
    { opening: 'p',          openingRtf: '{\\pard',             closing: '/p',          closingRtf: '\\sb70\\par}' },
    { opening: 'ol',         openingRtf: '{{\\*\\pn\\pnlvlbody\\pnf0\\pnindent0\\pnstart1\\pndec{\\pntxta.}}\\fi-360\\li720\\sa200\\sl276\\slmult1',  closing: '/ol',   closingRtf: '}' },
    { opening: 's',          openingRtf: '{\\strike',           closing: '/s',          closingRtf: '}' },
