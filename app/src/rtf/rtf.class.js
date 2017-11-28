@@ -25,7 +25,9 @@ class Rtf {
 
   buildRtf() {
     this.rtfHeaderContent += Style.getRtfColorTable();
-    return (this.rtfHeaderOpening + this.rtfHeaderContent + this.getRtfContentReferences() + this.rtfClosing);
+    let content = (this.rtfHeaderOpening + this.rtfHeaderContent + this.getRtfContentReferences() + this.rtfClosing);
+    this.clearCacheContent();
+    return content;
   }
 
   getRtfContentReferences() {
@@ -116,6 +118,11 @@ class Rtf {
       if (err) throw err;
       console.log('The file has been saved!');
     });
+  }
+
+  clearCacheContent() {
+    this.rtfHeaderContent = '';
+    this.rtfContentReferences = [];    
   }
 
 }
