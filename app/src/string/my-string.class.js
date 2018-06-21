@@ -1,55 +1,32 @@
 class MyString {
-  static removeCharacterOfEscapeInAllString(stringValue, stringOfEscape) {
-    let listOfEscape = this.removeCharacterOfEscapeNotAllowed(stringOfEscape);
-    let newstringValue = '';
+  static escapeCharacters(stringValue) {
+    stringValue = String(stringValue);
 
-    if(listOfEscape == undefined)
-      return stringValue;
-      
-    Array.from(stringValue).forEach(element => {
-      if(!listOfEscape.includes(element))
-        newstringValue += element;
-    });
-    return newstringValue;
+    stringValue = stringValue.replace(/([\n\r\t\f\s]+)|([{}\\])|([^\x00-\x7F])/g,
+        function (c, isSpace, isSpecial, isNonAscii7) {
+            if (isSpace) {
+                return ' ';
+            } else if (isSpecial) {
+                return '\\' + c;
+            } else if (isNonAscii7) {
+                var cc = c.charCodeAt();
+                return '\\u' + String(cc <= 32767 ? cc : cc -65535) + '?';
+            }
+            return undefined;
+        }
+    );
+
+    return stringValue.trim();
   }
 
   static convertOneCharInHexToDec(value) {
-    if(value.length != 1)
-      return undefined;
-
-    else if(value >= '0' && value <= '9')
-      return value;
-
-    else if(value.toUpperCase() >= 'A' && value.toUpperCase() <= 'F') {
-      value = value.toUpperCase();
-      let number;
-      switch(value) {
-        case 'A': number = '10'; break;
-        case 'B': number = '11'; break;
-        case 'C': number = '12'; break;
-        case 'D': number = '13'; break;
-        case 'E': number = '14'; break;
-        case 'F': number = '15'; break;
-      }
-      return number;
-    }
-    else
-      return undefined;
-  }
-
-  static removeCharacterOfEscapeNotAllowed(stringOfEscape) {
-    let listOfCharacterOfEscape = ['\n', '\r', '\t', '\f'];
-    let newStringOfEscape = [];
-
-    Array.from(stringOfEscape).forEach(elem => {
-      if(listOfCharacterOfEscape.includes(elem))
-        newStringOfEscape.push(elem);
-    });
-    return newStringOfEscape.length > 0 ? newStringOfEscape : undefined;
+    if (String(value).match(/0-9a-fA-F/))
+        return parseInt(value, 16);
+    return undefined;
   }
 
   static hasOnlyWhiteSpace(content) {
-    return (content.replace(/\s/g, '').length == 0) ? true : false;
+    return content.match(/^\s+$/g);
   } 
 
 }
