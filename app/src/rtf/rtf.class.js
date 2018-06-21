@@ -3,8 +3,8 @@ const Style           = require('../style/style.class');
 const AllowedHtmlTags = require('../allowed-html-tags/allowed-html-tags.class');
 const Table           = require('../table/table.class');
 const MyString        = require('../string/my-string.class');
-const juice           = require('juice');
-const fs              = require('fs');
+const juice 		      = require('juice');
+const fs 				      = require('fs');
 
 class Rtf {
   constructor() { 
@@ -97,7 +97,7 @@ class Rtf {
   }
 
   addContentOfTagInRtfCode(contentOfTag) {
-    contentOfTag = MyString.escapeCharacters(contentOfTag);
+    contentOfTag = MyString.removeCharacterOfEscapeInAllString(contentOfTag, '\n\t');
    
     if(contentOfTag != undefined && !MyString.hasOnlyWhiteSpace(contentOfTag))
       this.rtfContentReferences.push({ content: this.addSpaceAroundString(contentOfTag.trim()), tag: false });
