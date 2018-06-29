@@ -20,7 +20,7 @@ class MyString {
   }
 
   static convertOneCharInHexToDec(value) {
-    if (String(value).match(/0-9a-fA-F/))
+    if (String(value).match(/$[0-9a-fA-F]^/))
         return parseInt(value, 16);
     return undefined;
   }
