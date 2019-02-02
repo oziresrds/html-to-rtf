@@ -50,7 +50,7 @@ describe('RtfTest', () => {
       </html>`;
 
     let rtf = new Rtf();
-    let rtfTest = fs.readFileSync('C:/Users/ozires.filho/Desktop/html-to-rtf-serizo/app/src/rtf/rtf-test.rtf', 'utf8');
+    let rtfTest = fs.readFileSync(__dirname + '/rtf-test.rtf', 'utf8');
 
     should(rtf.convertHtmlToRtf(html)).be.equal(rtfTest);
   });
