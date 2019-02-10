@@ -3,7 +3,7 @@ const HtmlTags = require('./html-tags.module');
 
 describe('HtmlTagsTest', () => {
   it('Length of module', () => {
-    should(HtmlTags.length).be.equal(28);
+    should(HtmlTags.length).be.equal(36);
   });
   
   HtmlTags.forEach(element => {

@@ -55,6 +55,20 @@ describe('RtfTest', () => {
     should(rtf.convertHtmlToRtf(html)).be.equal(rtfTest);
   });
 
+  it('convertHtmlToRtf() With stranger tag: <mytag></mytag>', () => {
+    let html = `<mytag style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</mytag>`;
+    let rtf = new Rtf();
+    Color.cleanColorTable();
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
+  });
+
+  it('convertHtmlToRtf() With stranger tag: <my-tag></my-tag>', () => {
+    let html = `<my-tag style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</my-tag>`;
+    let rtf = new Rtf();
+    Color.cleanColorTable();
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
+  });
+
   it('buildRtf()', () => {
     let rtf = new Rtf();
 
@@ -153,4 +167,15 @@ describe('RtfTest', () => {
     let rtf = new Rtf();
     should(rtf.addSpaceAroundString('string of test')).be.equal(' string of test ');
   });
+
+  it('swapHtmlStrangerTags()', () => {
+    let rtf = new Rtf();
+    let strangerTag = '<my-tag>my data</my-tag>';
+    let knowedTag = '<p>my data</p>';
+
+    Color.cleanColorTable();
+    should(rtf.swapHtmlStrangerTags(strangerTag, 'p')).be.equal('<p>my data</p>');
+    should(rtf.swapHtmlStrangerTags(knowedTag, 'test')).be.equal('<p>my data</p>');
+  });
+
 });

@@ -16,11 +16,21 @@ class Rtf {
   }
 
   convertHtmlToRtf(html) {
-    let $ = cheerio.load(juice(html));
-    let treeOfTags = $('html').children();
+    let htmlWithoutStrangerTags, $, treeOfTags;
+
+    htmlWithoutStrangerTags = this.swapHtmlStrangerTags(html, 'p');
+    $ = cheerio.load(juice(htmlWithoutStrangerTags));
+    treeOfTags = $('html').children();
 
     Array.from(treeOfTags).forEach(tag => this.readAllChildsInTag(tag));
     return this.buildRtf();
+  }
+
+  swapHtmlStrangerTags(html, dafaultTag) {
+    return html.replace(/<(\/?[a-z-]+)( *[^>]*)?>/gi, (match, tagName, options) => {
+      let newTag = !tagName.includes('/') ? `<${ dafaultTag }${ options ? options : '' }>` : `</${ dafaultTag }>`;
+      return AllowedHtmlTags.isKnowedTag(tagName) ? match : `${ newTag }`;
+    });
   }
 
   buildRtf() {
