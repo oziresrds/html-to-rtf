@@ -27,7 +27,7 @@ class Rtf {
   }
 
   swapHtmlStrangerTags(html, dafaultTag) {
-    return html.replace(/<(\/?[a-zA-Z_]+[a-zA-Z0-9_]*)( *[^>]*)?>/gi, (match, tagName, options) => {
+    return html.replace(/<(\/?[a-z-_]+[a-z0-9-_]*)( *[^>]*)?>/gi, (match, tagName, options) => {
       let newTag = !tagName.includes('/') ? `<${ dafaultTag }${ options ? options : '' }>` : `</${ dafaultTag }>`;
       return AllowedHtmlTags.isKnowedTag(tagName) ? match : `${ newTag }`;
     });
