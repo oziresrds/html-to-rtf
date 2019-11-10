@@ -13,6 +13,7 @@ $ npm install html-to-rtf
 ```javascript
 var htmlToRtf = require('html-to-rtf');
 var html = `
+<h1>Title <span style="color:rgb(255,0,0);">with</span> tag h1<h1>
 <div>
 	<p style="color:#333; margin:5px;" class="test" align="center">
 	    text of paragraph <b>text with bold <i>text with italic and bold</i></b><i>text with italic</i>
