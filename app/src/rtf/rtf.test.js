@@ -7,47 +7,48 @@ const fs 			= require('fs');
 describe('RtfTest', () => {
   it('convertHtmlToRtf()', () => {
     var html = `
-      <html>
-        <head>
-          <style>
-            .test {
-              color: rgb(20, 20, 20);
-              background:#333;
-            }
-          </style>
-        </head>
-        <body>
-        <div id="content">
-          <p style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</p>
-          <p style="color:rgb(255,0,0);" align="right">paragrafo vermelho => right with tag</p>
-          <p style="color:rgb(0,0,255); text-align:center;">paragrafo blue => center with style</p>
-          <table>
-              <tbody>
-                <tr>
-                  <td>
-                    coluna1
-                  </td>
-                  <td>
-                    coluna2
-                  </td>
-                  <td>
-                    coluna3
-                  </td>
-                  <td>
-                    coluna4
-                  </td>
-                </tr>
-                <tr>
-                  <td>conteudo1</td>
-                  <td>conteudo2<br></td>
-                  <td>conteudo3<br></td>
-                  <td>conteudo1<br></td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-        </body>
-      </html>`;
+    <html>
+    <head>
+      <style>
+        .test {
+          color: rgb(20, 20, 20);
+          background:#333;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Title <span style="color:rgb(255,0,0);">with</span> tag h1<h1>
+      <div id="content">
+        <p style="color:#333; margin:5px;" class="test" align="center">text of p<b>start b <i>italic with  bold</i>final text of b</b><i>italic</i>final text of p</p>
+        <p style="color:rgb(255,0,0);" align="right">red paragraph => right with tag</p>
+        <p style="color:rgb(0,0,255); text-align:center;">blue paragraph => center with style</p>
+        <table>
+            <tbody>
+              <tr>
+                <td>
+                  column 1
+                </td>
+                <td>
+                  column 2
+                </td>
+                <td>
+                  column 3
+                </td>
+                <td>
+                  column 4
+                </td>
+              </tr>
+              <tr>
+                <td>content 1</td>
+                <td>content 2<br></td>
+                <td>content 3<br></td>
+                <td>content 4<br></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </body>
+  </html>`;
 
     let rtf = new Rtf();
     let rtfTest = fs.readFileSync(__dirname + '/rtf-test.rtf', 'utf8');
@@ -68,6 +69,16 @@ describe('RtfTest', () => {
     Color.cleanColorTable();
     should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
   });
+
+  for (let index = 0; index <= 5; index++) {
+    const tagName = `h${ ++index }`;
+    it(`convertHtmlToRtf() by <${ tagName }></${ tagName }>`, () => {
+      let html = `<${ tagName }>Title <span style="color:rgb(255,0,0);">with</span> tag ${ tagName }<${ tagName }>`;
+      let rtf = new Rtf();
+      Color.cleanColorTable();
+      should(rtf.convertHtmlToRtf(html)).be.equal(`{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red255\\green0\\blue0;}{\\pard Title {\\cf1 with } tag ${ tagName } \\sb70\\par}{\\pard\\sb70\\par}}`);
+    });
+  }
 
   it('buildRtf()', () => {
     let rtf = new Rtf();
