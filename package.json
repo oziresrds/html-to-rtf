@@ -19,13 +19,13 @@
   "main": "index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.1",
-    "juice": "^4.1.0"
+    "juice": "^7.0.0"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-mocha": "^7.0.2",
     "mocha": "^8.0.1",
-    "should": "^11.2.1"
+    "should": "^13.2.3"
   },
   "scripts": {
     "test": "gulp tests"
