@@ -7,7 +7,14 @@
   },
   "description": "Convert html to rtf format in the server",
   "readmeFilename": "README.md",
-  "keywords": ["html", "rtf", "convert", "server", "node", "javascript"],
+  "keywords": [
+    "html",
+    "rtf",
+    "convert",
+    "server",
+    "node",
+    "javascript"
+  ],
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
@@ -15,9 +22,9 @@
     "juice": "^4.1.0"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-mocha": "^4.3.1",
-    "mocha": "^3.4.2",
+    "gulp": "^4.0.2",
+    "gulp-mocha": "^7.0.2",
+    "mocha": "^8.0.1",
     "should": "^11.2.1"
   },
   "scripts": {
