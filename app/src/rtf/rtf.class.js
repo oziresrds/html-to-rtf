@@ -19,7 +19,6 @@ class Rtf {
     let htmlWithoutStrangerTags, $, treeOfTags
 
     htmlWithoutStrangerTags = this.swapHtmlStrangerTags(html, 'p')
-    console.log(htmlWithoutStrangerTags)
     $ = cheerio.load(juice(htmlWithoutStrangerTags))
     treeOfTags = $('html').children()
 
