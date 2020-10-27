@@ -8,7 +8,7 @@ const fs = require('fs')
 
 class Rtf {
   constructor() {
-    this.rtfHeaderOpening = "{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}"
+    this.rtfHeaderOpening = "{\\rtf1\\ansi\\fs22\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}"
     this.rtfHeaderContent = ''
     this.rtfClosing = "}"
     this.rtfContentReferences = []
