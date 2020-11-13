@@ -55,8 +55,10 @@ class Rtf {
       if (fatherTag.name.toLowerCase() == 'table')
         this.Table.setAmountOfColumns(this.getAmountOfColumnThroughOfFirstChildOfTbodyTag(fatherTag.children))
 
-      if (fatherTag.name.toLowerCase() == 'tr')
-        this.addReferenceTagInRtfCode(this.Table.buildCellsLengthOfEachColumn())
+      if (fatherTag.name.toLowerCase() == 'tr'){
+        let colSpanArray = this.getTableRowColSpans(fatherTag.children);
+        this.addReferenceTagInRtfCode(this.Table.buildCellsLengthOfEachColumn(colSpanArray))
+      }
 
       if (fatherTag.name.toLowerCase() == 'mark')
         this.setHighlightInRtf();
@@ -71,6 +73,18 @@ class Rtf {
     this.addClosingFatherTagInRtfCode(fatherTag.name)
   }
 
+  getTableRowColSpans(children) {
+    return children.flatMap((child) => {
+      if (child.type == 'text')
+        return []
+      else
+        if(child.attribs != undefined && child.attribs.colspan != undefined)
+            return parseInt(child.attribs.colspan)
+          else
+            return 1
+    });
+  }
+
   getAmountOfColumnThroughOfFirstChildOfTbodyTag(tableChildren) {
     let count = 0
     let tbodyIndex = tableChildren.findIndex(value => value.name == 'tbody')
@@ -78,8 +92,8 @@ class Rtf {
       if (tableChildren[tbodyIndex].children[i].type != 'text') {
         (tableChildren[tbodyIndex].children[i].children).forEach((child, index) => {
           if (child.type != 'text')
-            if(child.attribs != undefined && child.attribs.colspan!=undefined)
-              count += child.attribs.colspan
+            if(child.attribs != undefined && child.attribs.colspan != undefined)
+              count += parseInt(child.attribs.colspan)
             else
               count++
         })

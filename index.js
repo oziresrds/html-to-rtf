@@ -6,29 +6,33 @@ var htmlOfExample = `
 <table style=\"border-collapse: collapse; width: 100%;\" border=\"1\">\n
 <tbody>\n
 <tr>\n
+<td style=\"text-align: justify;\" colspan=\"2\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">teste editado no vscode</span></span></td>\n
 <td style=\"text-align: justify;\" colspan=\"4\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">teste editado no vscode</span></span></td>\n
 </tr>\n
 <tr>\n
 <td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">12</span></span></td>\n
-<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">324</span></span></td>\n
-<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">536</span></span></td>\n
 <td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">748</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">12</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
 </tr>\n
 <tr>\n
-<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">950</span></span></td>\n
-<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">-6-</span></span></td>\n
-<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">=7=</span></span></td>\n
+<td style=\"text-align: justify;\" colspan=\"2\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">950</span></span></td>\n
 <td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">8fgdg</span></span></td>\n
+<td style=\"text-align: justify;\" colspan=\"3\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">12</span></span></td>\n
 </tr>\n
 <tr>\n
 <td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">9</span></span></td>\n
-<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">10</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
 <td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
 <td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">12</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
+<td style=\"text-align: justify;\"><span style=\"font-size: 11pt;\"><span style=\"color: #000000;\">11</span></span></td>\n
 </tr>\n
 </tbody>\n
 </table>\n`;
 
 let htmlToRtf = new Rtf();
 // htmlToRtf.convertHtmlToRtf(htmlOfExample);
-htmlToRtf.saveRtfInFile('/home/victor/Downloads/table.rtf', htmlToRtf.convertHtmlToRtf(htmlOfExample));
+htmlToRtf.saveRtfInFile('/mnt/c/Users/lucas/OneDrive/Documentos/table.rtf', htmlToRtf.convertHtmlToRtf(htmlOfExample));

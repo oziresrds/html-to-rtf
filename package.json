@@ -7,7 +7,14 @@
   },
   "description": "Convert html to rtf format in the server",
   "readmeFilename": "README.md",
-  "keywords": ["html", "rtf", "convert", "server", "node", "javascript"],
+  "keywords": [
+    "html",
+    "rtf",
+    "convert",
+    "server",
+    "node",
+    "javascript"
+  ],
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
@@ -22,7 +29,7 @@
   },
   "scripts": {
     "test": "gulp tests",
-    "debug":"node index.js"
+    "debug": "node index.js"
   },
   "repository": {
     "type": "git",
