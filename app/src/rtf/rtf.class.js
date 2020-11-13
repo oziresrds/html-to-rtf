@@ -78,7 +78,10 @@ class Rtf {
       if (tableChildren[tbodyIndex].children[i].type != 'text') {
         (tableChildren[tbodyIndex].children[i].children).forEach((child, index) => {
           if (child.type != 'text')
-            count++
+            if(child.attribs != undefined && child.attribs.colspan!=undefined)
+              count += child.attribs.colspan
+            else
+              count++
         })
         break
       }
@@ -126,7 +129,7 @@ class Rtf {
   saveRtfInFile(path, value) {
     fs.writeFile(path, value, (err) => {
       if (err) throw err
-      console.log('The file has been saved!')
+      console.log('The file has been saved at '+path)
     })
   }
 

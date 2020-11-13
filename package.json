@@ -21,7 +21,8 @@
     "should": "^11.2.1"
   },
   "scripts": {
-    "test": "gulp tests"
+    "test": "gulp tests",
+    "debug":"node index.js"
   },
   "repository": {
     "type": "git",
