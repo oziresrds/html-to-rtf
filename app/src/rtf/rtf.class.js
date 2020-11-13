@@ -74,15 +74,15 @@ class Rtf {
   }
 
   getTableRowColSpans(children) {
-    return children.flatMap((child) => {
-      if (child.type == 'text')
-        return []
-      else
+    let colSpans = []
+    children.forEach((child) => {
+      if (child.type != 'text')
         if(child.attribs != undefined && child.attribs.colspan != undefined)
-            return parseInt(child.attribs.colspan)
+            colSpans.push(parseInt(child.attribs.colspan))
           else
-            return 1
+            colSpans.push(1)
     });
+    return colSpans;
   }
 
   getAmountOfColumnThroughOfFirstChildOfTbodyTag(tableChildren) {
