@@ -16,7 +16,7 @@ describe('TableTest', () => {
   it('getCellLength()', () => {
     let _Table = new Table();
     _Table.setAmountOfColumns(5);
-    should(_Table.getCellLength()).be.equal(1700);
+    should(_Table.getCellLength(5)).be.equal(1700);
   });
 
   it('getRtfReferenceRow()', () => {
@@ -27,6 +27,6 @@ describe('TableTest', () => {
   it('buildCellsLengthOfEachColumn()', () => {
     let _Table = new Table();
     _Table.setAmountOfColumns(2);
-    should(_Table.buildCellsLengthOfEachColumn()).be.equal('\\clbrdrt\\brdrw15\\brdrs\\clbrdrl\\brdrw15\\brdrs\\clbrdrb\\brdrw15\\brdrs\\clbrdrr\\brdrw15\\brdrs\\cellx4251\\clbrdrt\\brdrw15\\brdrs\\clbrdrl\\brdrw15\\brdrs\\clbrdrb\\brdrw15\\brdrs\\clbrdrr\\brdrw15\\brdrs\\cellx8502');
+    should(_Table.buildCellsLengthOfEachColumn([2])).be.equal('\\clbrdrt\\brdrw15\\brdrs\\clbrdrl\\brdrw15\\brdrs\\clbrdrb\\brdrw15\\brdrs\\clbrdrr\\brdrw15\\brdrs\\cellx8500');
   });
 });

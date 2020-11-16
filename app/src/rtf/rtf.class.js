@@ -8,7 +8,7 @@ const fs = require('fs')
 
 class Rtf {
   constructor() {
-    this.rtfHeaderOpening = "{\\rtf1\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}"
+    this.rtfHeaderOpening = "{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}"
     this.rtfHeaderContent = ''
     this.rtfClosing = "}"
     this.rtfContentReferences = []
@@ -131,7 +131,7 @@ class Rtf {
   }
 
   addSpaceAroundString(contentOfTag) {
-    return ` ${contentOfTag}`
+    return ` ${contentOfTag} `
   }
 
   setHighlightInRtf() {
