@@ -13,7 +13,7 @@ module.exports = [
    },
    {
       opening: 'center',
-      openingRtf: '{\\pard\\qr',
+      openingRtf: '{\\pard\\qc',
       closing: '/center',
       closingRtf: '\\par}'
    },
