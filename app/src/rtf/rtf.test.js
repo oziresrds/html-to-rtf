@@ -51,14 +51,14 @@ describe('RtfTest', () => {
     let html = `<mytag style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</mytag>`;
     let rtf = new Rtf();
     Color.cleanColorTable();
-    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito  {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito  {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
   });
 
   it('convertHtmlToRtf() With stranger tag: <my-tag></my-tag>', () => {
     let html = `<my-tag style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</my-tag>`;
     let rtf = new Rtf();
     Color.cleanColorTable();
-    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito  {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito  {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
   });
 
   for (let index = 0; index <= 5; index++) {
@@ -67,7 +67,7 @@ describe('RtfTest', () => {
       let html = `<${ tagName }>Title <span style="color:rgb(255,0,0);">with</span> tag ${ tagName }<${ tagName }>`;
       let rtf = new Rtf();
       Color.cleanColorTable();
-      should(rtf.convertHtmlToRtf(html)).be.equal(`{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;\\red255\\green0\\blue0;}{\\pard Title  {\\cf1 with }  tag ${ tagName } \\sb70\\par}{\\pard\\sb70\\par}}`);
+      should(rtf.convertHtmlToRtf(html)).be.equal(`{\\rtf1\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;\\red255\\green0\\blue0;}{\\pard Title  {\\cf1 with }  tag ${ tagName } \\sb70\\par}{\\pard\\sb70\\par}}`);
     });
   }
 
@@ -79,7 +79,7 @@ describe('RtfTest', () => {
     rtf.addContentOfTagInRtfCode('test test test test');
     rtf.addClosingFatherTagInRtfCode('b');
 
-    should(rtf.buildRtf()).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;}{\\b test test test test }}');
+    should(rtf.buildRtf()).be.equal('{\\rtf1\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Arial;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\*\\defchp \\fs22}{\\colortbl ;}{\\b test test test test }}');
   });
 
   it('getRtfContentReferences()', () => {
