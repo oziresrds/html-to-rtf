@@ -1,15 +1,47 @@
-# HTML To RTF
->This project convert html to rtf format in the server.
-
-## Prerequisites
->This project work with NodeJS in the server side
-[NodeJS]: <https://nodejs.org>
+# HTML To RTF (Browser and Server)
+>This project convert html to rtf format in the Browser (v2.0.0+) and the server with NodeJS.
 
 ## Installation
 ```
 $ npm install html-to-rtf
 ```
-## Getting Started
+## Starting in the Browser
+```html
+<html>
+    <head>
+      <title>Teste HTML TO RTF</title>
+      <script src="./node_modules/html-to-rtf/app/browser/bundle.js"></script>
+      <script type="text/javascript">
+        window.onload = function() {
+            const html =`<p style="color:#333;" align="center">text of p<b>start b <i>italic with bold</i>final text of b</b><i>italic<i>final text of p </p>`;
+
+            document.getElementById('html').innerHTML = html;
+            document.getElementById('rtf').innerHTML = htmlToRtf(html);
+        }
+      </script>
+
+      <link rel="stylesheet" href="./node_modules/html-to-rtf/app/browser/style.css">
+    </head>
+    <body>
+        <h1>HTML To RTF Example:</h1>
+        <div class="container">
+            <h2>HTML</h2>
+            <textarea id="html" readonly></textarea>
+        </div>
+
+        <div class="container">
+            <h2>RTF</h2>
+            <textarea id="rtf" readonly></textarea>
+        </div>
+    </body>
+  </html>
+```
+##### Observation:
+#
+>There is a file example (index.html) in  "./node_modules/html-to-rtf/app/browser/index.html"
+#
+#
+## Starting in the Server
 ```javascript
 var htmlToRtf = require('html-to-rtf');
 var html = `
