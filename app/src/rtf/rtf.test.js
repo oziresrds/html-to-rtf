@@ -189,4 +189,11 @@ describe('RtfTest', () => {
     should(rtf.swapHtmlStrangerTags(knowedTag, 'test')).be.equal('<p>my data</p>');
   });
 
+  it('Should encoding string correctly', () => {
+    const html = `<p>comparação</p>`;
+    const rtf = new Rtf();
+
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard compara\\\'e7\\\'e3o \\sb70\\par}}');
+  });
+
 });

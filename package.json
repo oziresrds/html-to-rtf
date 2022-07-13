@@ -1,6 +1,6 @@
 {
   "name": "html-to-rtf",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": {
     "name": "Ozires R.S.O.F",
     "email": "oziresrds@yahoo.com.br"
@@ -25,6 +25,7 @@
     "test": "gulp tests",
     "browser:build": "browserify ./main.js > ./app/browser/bundle.js",
     "browserify": "browserify",
+    "publish": "npm run browser:build && npm publish",
     "test:publish-package": "npm pack"
   },
   "repository": {

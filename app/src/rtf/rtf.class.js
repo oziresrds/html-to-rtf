@@ -5,6 +5,7 @@ const Table           = require('../table/table.class');
 const MyString        = require('../string/my-string.class');
 const juice 		      = require('juice');
 const fs 				      = require('fs');
+const Character       = require('./character.class');
 
 class Rtf {
   constructor() {
@@ -108,6 +109,7 @@ class Rtf {
 
   addContentOfTagInRtfCode(contentOfTag) {
     contentOfTag = MyString.removeCharacterOfEscapeInAllString(contentOfTag, '\n\t');
+    contentOfTag = Character.asciiToRtfScape(contentOfTag);
 
     if(contentOfTag != undefined && !MyString.hasOnlyWhiteSpace(contentOfTag))
       this.rtfContentReferences.push({ content: this.addSpaceAroundString(contentOfTag.trim()), tag: false });

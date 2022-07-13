@@ -5,6 +5,12 @@
 ```
 $ npm install html-to-rtf
 ```
+
+## Changelog
+```
+* Encoding string correctly
+```
+
 ## Starting in the Browser
 ```html
 <html>
