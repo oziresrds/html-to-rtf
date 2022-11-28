@@ -4,7 +4,7 @@ const AllowedHtmlTags = require('../allowed-html-tags/allowed-html-tags.class');
 const Table           = require('../table/table.class');
 const MyString        = require('../string/my-string.class');
 const juice 		      = require('juice');
-const fs 				      = require('fs');
+// const fs 				      = require('fs');
 const Character       = require('./character.class');
 
 class Rtf {
@@ -126,10 +126,10 @@ class Rtf {
   }
 
   saveRtfInFile(path, value) {
-    fs.writeFile(path, value, (err) => {
-      if (err) throw err;
+    // fs.writeFile(path, value, (err) => {
+      // if (err) throw err;
       console.log('The file has been saved!');
-    });
+    // });
   }
 
   clearCacheContent() {
