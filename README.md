@@ -8,7 +8,8 @@ $ npm install html-to-rtf
 
 ## Changelog
 ```
-* Encoding string correctly
+* Encoding string correctly (v2.0.1)
+* Setting correct space and fix some insecure dependencies (v2.0.2)
 ```
 
 ## Starting in the Browser

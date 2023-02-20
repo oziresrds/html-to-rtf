@@ -7,7 +7,15 @@
   },
   "description": "Convert html to rtf format in the browser and the server",
   "readmeFilename": "README.md",
-  "keywords": ["html", "rtf", "convert", "server", "node", "javascript", "browser"],
+  "keywords": [
+    "html",
+    "rtf",
+    "convert",
+    "server",
+    "node",
+    "javascript",
+    "browser"
+  ],
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
