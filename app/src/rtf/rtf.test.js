@@ -196,4 +196,10 @@ describe('RtfTest', () => {
     should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard compara\\\'e7\\\'e3o \\sb70\\par}}');
   });
 
+  it('Should set correct space', () => {
+    const html = `<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My test&nbsp;&nbsp;&nbsp;paragraph<h1>`;
+    const rtf = new Rtf();
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard       My test     paragraph {\\pard\\sb70\\par}\\sb70\\par}}');
+  });
+
 });

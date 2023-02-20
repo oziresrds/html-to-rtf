@@ -214,5 +214,11 @@ module.exports = [
       openingRtf: '',
       closing: '/title',
       closingRtf: ''
+   },
+   {
+      opening: 'html-space',
+      openingRtf: ' ',
+      closing: '/html-space',
+      closingRtf: ''
    }
 ];

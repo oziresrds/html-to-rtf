@@ -19,6 +19,7 @@ class Rtf {
   convertHtmlToRtf(html) {
     let htmlWithoutStrangerTags, $, treeOfTags;
 
+    html = html.replace(/&nbsp;/gi, '<html-space>');
     htmlWithoutStrangerTags = this.swapHtmlStrangerTags(html, 'p');
     $ = cheerio.load(juice(htmlWithoutStrangerTags));
     treeOfTags = $('html').children();
@@ -95,8 +96,9 @@ class Rtf {
   }
 
   addReferenceTagInRtfCode(referenceTag) {
-    if(referenceTag != undefined)
+    if(referenceTag != undefined) {
       this.rtfContentReferences.push({ content: referenceTag, tag: true });
+    }
   }
 
   addOpeningTagInRtfCode(tag) {
