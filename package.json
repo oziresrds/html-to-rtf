@@ -1,6 +1,6 @@
 {
   "name": "html-to-rtf",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": {
     "name": "Ozires R.S.O.F",
     "email": "oziresrds@yahoo.com.br"
@@ -19,7 +19,7 @@
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
-    "cheerio": "1.0.0-rc.1",
+    "cheerio": "1.0.0-rc.12",
     "juice": "4.1.0"
   },
   "devDependencies": {
