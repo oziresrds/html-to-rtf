@@ -264,6 +264,12 @@ module.exports = [
       openingRtf: '',
       closing: '/title',
       closingRtf: ''
+   },
+   {
+      opening: 'html-space',
+      openingRtf: ' ',
+      closing: '/html-space',
+      closingRtf: ''
    }
 ];
 },{}],4:[function(require,module,exports){
@@ -494,6 +500,7 @@ class Rtf {
   convertHtmlToRtf(html) {
     let htmlWithoutStrangerTags, $, treeOfTags;
 
+    html = html.replace(/&nbsp;/gi, '<html-space>');
     htmlWithoutStrangerTags = this.swapHtmlStrangerTags(html, 'p');
     $ = cheerio.load(juice(htmlWithoutStrangerTags));
     treeOfTags = $('html').children();
@@ -570,8 +577,9 @@ class Rtf {
   }
 
   addReferenceTagInRtfCode(referenceTag) {
-    if(referenceTag != undefined)
+    if(referenceTag != undefined) {
       this.rtfContentReferences.push({ content: referenceTag, tag: true });
+    }
   }
 
   addOpeningTagInRtfCode(tag) {
@@ -11770,6 +11778,12 @@ module.exports = lodash;
 
 },{"./_LazyWrapper":35,"./_LodashWrapper":37,"./_baseLodash":82,"./_wrapperClone":205,"./isArray":219,"./isObjectLike":226}],250:[function(require,module,exports){
 module.exports={
+  "_args": [
+    [
+      "cheerio@1.0.0-rc.1",
+      "/workspaces/html-to-rtf"
+    ]
+  ],
   "_from": "cheerio@1.0.0-rc.1",
   "_id": "cheerio@1.0.0-rc.1",
   "_inBundle": false,
@@ -11790,8 +11804,7 @@ module.exports={
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/cheerio/-/cheerio-1.0.0-rc.1.tgz",
-  "_shasum": "2af37339eab713ef6b72cde98cefa672b87641fe",
-  "_spec": "cheerio@1.0.0-rc.1",
+  "_spec": "1.0.0-rc.1",
   "_where": "/workspaces/html-to-rtf",
   "author": {
     "name": "Matt Mueller",
@@ -11801,7 +11814,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/cheeriojs/cheerio/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "css-select": "~1.2.0",
     "dom-serializer": "~0.1.0",
@@ -11810,7 +11822,6 @@ module.exports={
     "lodash": "^4.15.0",
     "parse5": "^3.0.1"
   },
-  "deprecated": false,
   "description": "Tiny, fast, and elegant implementation of core jQuery designed specifically for the server",
   "devDependencies": {
     "benchmark": "^2.1.0",
@@ -20137,29 +20148,34 @@ exports.isHtml = function(str) {
 
 },{"./parse":316,"dom-serializer":259}],319:[function(require,module,exports){
 module.exports={
-  "_from": "cheerio@^0.22.0",
+  "_args": [
+    [
+      "cheerio@0.22.0",
+      "/workspaces/html-to-rtf"
+    ]
+  ],
+  "_from": "cheerio@0.22.0",
   "_id": "cheerio@0.22.0",
   "_inBundle": false,
   "_integrity": "sha1-qbqoYKP5tZWmuBsahocxIe06Jp4=",
   "_location": "/juice/cheerio",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "cheerio@^0.22.0",
+    "raw": "cheerio@0.22.0",
     "name": "cheerio",
     "escapedName": "cheerio",
-    "rawSpec": "^0.22.0",
+    "rawSpec": "0.22.0",
     "saveSpec": null,
-    "fetchSpec": "^0.22.0"
+    "fetchSpec": "0.22.0"
   },
   "_requiredBy": [
     "/juice"
   ],
   "_resolved": "https://registry.npmjs.org/cheerio/-/cheerio-0.22.0.tgz",
-  "_shasum": "a9baa860a3f9b595a6b81b1a86873121ed3a269e",
-  "_spec": "cheerio@^0.22.0",
-  "_where": "/workspaces/html-to-rtf/node_modules/juice",
+  "_spec": "0.22.0",
+  "_where": "/workspaces/html-to-rtf",
   "author": {
     "name": "Matt Mueller",
     "email": "mattmuelle@gmail.com",
@@ -20168,7 +20184,6 @@ module.exports={
   "bugs": {
     "url": "https://github.com/cheeriojs/cheerio/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "css-select": "~1.2.0",
     "dom-serializer": "~0.1.0",
@@ -20187,7 +20202,6 @@ module.exports={
     "lodash.reject": "^4.4.0",
     "lodash.some": "^4.4.0"
   },
-  "deprecated": false,
   "description": "Tiny, fast, and elegant implementation of core jQuery designed specifically for the server",
   "devDependencies": {
     "benchmark": "^2.1.0",
