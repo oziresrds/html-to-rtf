@@ -1,9 +1,9 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var alignmentReferenceList = [
-  { name: 'center',   reference: '\\qc' },
-  { name: 'left',     reference: '\\ql' },
-  { name: 'right',    reference: '\\qr' },
-  { name: 'justify',  reference: '\\qj' }
+  { name: 'center',   reference: '\\qc ' },
+  { name: 'left',     reference: '\\ql ' },
+  { name: 'right',    reference: '\\qr ' },
+  { name: 'justify',  reference: '\\qj ' }
 ];
 
 class Alignment {
@@ -363,7 +363,7 @@ class Color {
     let rtfReferenceColor, amountColorPosition = 0, colorsPosition = 1;
     colorTable[amountColorPosition].amount++;
     rtfReferenceColor = '\\cf' + colorTable[amountColorPosition].amount;
-    colorTable[colorsPosition].push({ red: rgb[0], green: rgb[1], blue: rgb[2], reference: rtfReferenceColor });
+    colorTable[colorsPosition].push({ red: rgb[0], green: rgb[1], blue: rgb[2], reference: rtfReferenceColor + ' ' });
   }
 
   static getRtfReferenceColorInColorTable(rgb) {
@@ -578,12 +578,28 @@ class Rtf {
 
   addReferenceTagInRtfCode(referenceTag) {
     if(referenceTag != undefined) {
-      this.rtfContentReferences.push({ content: referenceTag, tag: true });
+      const space = referenceTag.includes('\\cf') ? '' : '';
+      this.rtfContentReferences.push({ content: referenceTag + space, tag: true });
     }
   }
 
   addOpeningTagInRtfCode(tag) {
-    this.addReferenceTagInRtfCode(AllowedHtmlTags.getRtfReferenceTag(tag));
+    let value = AllowedHtmlTags.getRtfReferenceTag(tag);
+    let space = '';
+    
+    if (value) {
+      if (value === ' ') {
+        space = '';
+      }
+      else if (value === '{') {
+        space = '';
+      }
+      else {
+        space = ' ';
+      }
+
+      this.addReferenceTagInRtfCode(value + space);
+    }
   }
 
   addClosingFatherTagInRtfCode(closingFatherTag) {
@@ -595,11 +611,7 @@ class Rtf {
     contentOfTag = Character.asciiToRtfScape(contentOfTag);
 
     if(contentOfTag != undefined && !MyString.hasOnlyWhiteSpace(contentOfTag))
-      this.rtfContentReferences.push({ content: this.addSpaceAroundString(contentOfTag.trim()), tag: false });
-  }
-
-  addSpaceAroundString(contentOfTag) {
-    return ` ${ contentOfTag } `;
+      this.rtfContentReferences.push({ content: contentOfTag, tag: false });
   }
 
   setHighlightInRtf() {

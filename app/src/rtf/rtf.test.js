@@ -60,23 +60,23 @@ describe('RtfTest', () => {
     let html = `<mytag style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</mytag>`;
     let rtf = new Rtf();
     Color.cleanColorTable();
-    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard \\cf1 \\qc texto de p{\\b negrito {\\i italico com  negrito}texto final b}{\\i italico}texto final de p\\sb70\\par}}');
   });
 
   it('convertHtmlToRtf() With stranger tag: <my-tag></my-tag>', () => {
-    let html = `<my-tag style="color:#333; margin:5px;" class="test" align="center">texto de p<b>negrito <i>italico com  negrito</i>texto final b</b><i>italico</i>texto final de p</my-tag>`;
+    let html = `<my-tag style="color:#333; margin:5px;" class="test" align="center">My text in <b>bold<i> and italic with bold</i> text in bold</b><i> italic</i> final text</my-tag>`;
     let rtf = new Rtf();
     Color.cleanColorTable();
-    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard\\cf1\\qc texto de p {\\b negrito {\\i italico com  negrito } texto final b }{\\i italico } texto final de p \\sb70\\par}}');
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red51\\green51\\blue51;}{\\pard \\cf1 \\qc My text in {\\b bold{\\i  and italic with bold} text in bold}{\\i  italic} final text\\sb70\\par}}');
   });
 
   for (let index = 0; index <= 5; index++) {
     const tagName = `h${ ++index }`;
     it(`convertHtmlToRtf() by <${ tagName }></${ tagName }>`, () => {
-      let html = `<${ tagName }>Title <span style="color:rgb(255,0,0);">with</span> tag ${ tagName }<${ tagName }>`;
+      let html = `<${ tagName }>Title <span style="color:rgb(255,0,0);">with</span> tag ${ tagName }</${ tagName }>`;
       let rtf = new Rtf();
       Color.cleanColorTable();
-      should(rtf.convertHtmlToRtf(html)).be.equal(`{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red255\\green0\\blue0;}{\\pard Title {\\cf1 with } tag ${ tagName } \\sb70\\par}{\\pard\\sb70\\par}}`);
+      should(rtf.convertHtmlToRtf(html)).be.equal(`{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;\\red255\\green0\\blue0;}{\\pard Title {\\cf1 with} tag ${ tagName }\\sb70\\par}}`);
     });
   }
 
@@ -88,7 +88,7 @@ describe('RtfTest', () => {
     rtf.addContentOfTagInRtfCode('test test test test');
     rtf.addClosingFatherTagInRtfCode('b');
 
-    should(rtf.buildRtf()).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\b test test test test }}');
+    should(rtf.buildRtf()).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\b test test test test}}');
   });
 
   it('getRtfContentReferences()', () => {
@@ -98,7 +98,7 @@ describe('RtfTest', () => {
     rtf.addContentOfTagInRtfCode('test test test test');
     rtf.addClosingFatherTagInRtfCode('b');
 
-    should(rtf.getRtfContentReferences()).be.equal('{\\b test test test test }');
+    should(rtf.getRtfContentReferences()).be.equal('{\\b test test test test}');
   });
 
   it('getAmountOfColumnThroughOfFirstChildOfTbodyTag()', () => {
@@ -131,7 +131,7 @@ describe('RtfTest', () => {
     atributes.style = 'background: #333; color: #333; margin: 5px; text-align: center; padding: 2px;';
     rtf.ifExistsAttributesAddAllReferencesInRtfCode(atributes);
 
-    should(rtf.getRtfContentReferences()).be.equal('\\cf1\\qc');
+    should(rtf.getRtfContentReferences()).be.equal('\\cf1 \\qc ');
   });
 
   it('addReferenceTagInRtfCode()', () => {
@@ -150,7 +150,7 @@ describe('RtfTest', () => {
     let rtf = new Rtf();
     
     rtf.addOpeningTagInRtfCode('p');
-    should(rtf.rtfContentReferences[0].content).be.equal('{\\pard');
+    should(rtf.rtfContentReferences[0].content).be.equal('{\\pard ');
     should(rtf.rtfContentReferences[0].tag).be.true();
   });
 
@@ -166,17 +166,12 @@ describe('RtfTest', () => {
     let rtf = new Rtf();
 
     rtf.addContentOfTagInRtfCode('string of test');
-    should(rtf.rtfContentReferences[0].content).be.equal(' string of test ');
+    should(rtf.rtfContentReferences[0].content).be.equal('string of test');
     should(rtf.rtfContentReferences[0].tag).be.false();
 
     rtf.addContentOfTagInRtfCode('string \nof test\t');
-    should(rtf.rtfContentReferences[1].content).be.equal(' string of test ');
+    should(rtf.rtfContentReferences[1].content).be.equal('string of test');
     should(rtf.rtfContentReferences[1].tag).be.false();
-  });
-
-  it('addSpaceAroundString()', () => {
-    let rtf = new Rtf();
-    should(rtf.addSpaceAroundString('string of test')).be.equal(' string of test ');
   });
 
   it('swapHtmlStrangerTags()', () => {
@@ -193,13 +188,19 @@ describe('RtfTest', () => {
     const html = `<p>comparação</p>`;
     const rtf = new Rtf();
 
-    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard compara\\\'e7\\\'e3o \\sb70\\par}}');
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard compara\\\'e7\\\'e3o\\sb70\\par}}');
   });
 
   it('Should set correct space', () => {
-    const html = `<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My test&nbsp;&nbsp;&nbsp;paragraph<h1>`;
+    const html = `<h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;My test&nbsp;&nbsp;&nbsp;paragraph</h1>`;
     const rtf = new Rtf();
-    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard       My test     paragraph {\\pard\\sb70\\par}\\sb70\\par}}');
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}{\\pard       My test   paragraph\\sb70\\par}}');
+  });
+
+  it('Should set correct space between open and close tags', () => {
+    const html = `Lorem <b>IPSUM</b> dolor sit amet..`;
+    const rtf = new Rtf();
+    should(rtf.convertHtmlToRtf(html)).be.equal('{\\rtf1\\ansi\\deff0{\\fonttbl {\\f0\\fnil\\fcharset0 Calibri;}{\\f1\\fnil\\fcharset2 Symbol;}}{\\colortbl ;}Lorem {\\b IPSUM} dolor sit amet..}');
   });
 
 });

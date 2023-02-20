@@ -97,12 +97,28 @@ class Rtf {
 
   addReferenceTagInRtfCode(referenceTag) {
     if(referenceTag != undefined) {
-      this.rtfContentReferences.push({ content: referenceTag, tag: true });
+      const space = referenceTag.includes('\\cf') ? '' : '';
+      this.rtfContentReferences.push({ content: referenceTag + space, tag: true });
     }
   }
 
   addOpeningTagInRtfCode(tag) {
-    this.addReferenceTagInRtfCode(AllowedHtmlTags.getRtfReferenceTag(tag));
+    let value = AllowedHtmlTags.getRtfReferenceTag(tag);
+    let space = '';
+    
+    if (value) {
+      if (value === ' ') {
+        space = '';
+      }
+      else if (value === '{') {
+        space = '';
+      }
+      else {
+        space = ' ';
+      }
+
+      this.addReferenceTagInRtfCode(value + space);
+    }
   }
 
   addClosingFatherTagInRtfCode(closingFatherTag) {
@@ -114,11 +130,7 @@ class Rtf {
     contentOfTag = Character.asciiToRtfScape(contentOfTag);
 
     if(contentOfTag != undefined && !MyString.hasOnlyWhiteSpace(contentOfTag))
-      this.rtfContentReferences.push({ content: this.addSpaceAroundString(contentOfTag.trim()), tag: false });
-  }
-
-  addSpaceAroundString(contentOfTag) {
-    return ` ${ contentOfTag } `;
+      this.rtfContentReferences.push({ content: contentOfTag, tag: false });
   }
 
   setHighlightInRtf() {

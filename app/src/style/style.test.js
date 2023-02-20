@@ -6,7 +6,7 @@ describe('StyleTest', () => {
   describe('getRtfReferenceColor()', () => {
     before(() => Color.cleanColorTable());
     it('should return rtf reference color', () => {
-      should(Style.getRtfReferenceColor('#333')).be.equal('\\cf1');
+      should(Style.getRtfReferenceColor('#333')).be.equal('\\cf1 ');
     });
   });
 
@@ -25,10 +25,10 @@ describe('StyleTest', () => {
 
   describe('getRtfAlignmentReference()', () => {
     it('should return rtf reference', () => {
-      should(Style.getRtfAlignmentReference('center')).be.equal('\\qc');
-      should(Style.getRtfAlignmentReference('left')).be.equal('\\ql');
-      should(Style.getRtfAlignmentReference('right')).be.equal('\\qr');
-      should(Style.getRtfAlignmentReference('justify')).be.equal('\\qj');
+      should(Style.getRtfAlignmentReference('center')).be.equal('\\qc ');
+      should(Style.getRtfAlignmentReference('left')).be.equal('\\ql ');
+      should(Style.getRtfAlignmentReference('right')).be.equal('\\qr ');
+      should(Style.getRtfAlignmentReference('justify')).be.equal('\\qj ');
       should(Style.getRtfAlignmentReference('')).be.undefined();
     });
   });
@@ -48,7 +48,7 @@ describe('StyleTest', () => {
   describe('getRtfReferencesInStyleProperty()', () => {
     before(() => Color.cleanColorTable());
     it('color: #333; font-size: 20px; align-text: center;', () => {
-      should(Style.getRtfReferencesInStyleProperty('color: #333; font-size: 20px; text-align: center;')).be.equal('\\cf1\\fs15\\qc');
+      should(Style.getRtfReferencesInStyleProperty('color: #333; font-size: 20px; text-align: center;')).be.equal('\\cf1 \\fs15\\qc ');
     });
     
     it('Style empty', () => {

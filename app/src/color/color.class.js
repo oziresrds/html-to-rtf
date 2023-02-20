@@ -55,7 +55,7 @@ class Color {
     let rtfReferenceColor, amountColorPosition = 0, colorsPosition = 1;
     colorTable[amountColorPosition].amount++;
     rtfReferenceColor = '\\cf' + colorTable[amountColorPosition].amount;
-    colorTable[colorsPosition].push({ red: rgb[0], green: rgb[1], blue: rgb[2], reference: rtfReferenceColor });
+    colorTable[colorsPosition].push({ red: rgb[0], green: rgb[1], blue: rgb[2], reference: rtfReferenceColor + ' ' });
   }
 
   static getRtfReferenceColorInColorTable(rgb) {

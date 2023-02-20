@@ -5,17 +5,17 @@ describe('ColorTest', () => {
   describe('getRtfReferenceColor()', () => {
     before(() => Color.cleanColorTable());
     it('RGB', () => {
-      should(Color.getRtfReferenceColor('rgb(255,0,0)')).be.equal('\\cf1');
-      should(Color.getRtfReferenceColor('rgb(255,0,0)')).be.equal('\\cf1');
-      should(Color.getRtfReferenceColor('rgb(255,25,0)')).be.equal('\\cf2');
-      should(Color.getRtfReferenceColor('rgb:(255,25,0);')).be.equal('\\cf2');
+      should(Color.getRtfReferenceColor('rgb(255,0,0)')).be.equal('\\cf1 ');
+      should(Color.getRtfReferenceColor('rgb(255,0,0)')).be.equal('\\cf1 ');
+      should(Color.getRtfReferenceColor('rgb(255,25,0)')).be.equal('\\cf2 ');
+      should(Color.getRtfReferenceColor('rgb:(255,25,0);')).be.equal('\\cf2 ');
     });
 
     it('HEX', () => {
-      should(Color.getRtfReferenceColor('#333')).be.equal('\\cf3');
-      should(Color.getRtfReferenceColor('#333333')).be.equal('\\cf3');
-      should(Color.getRtfReferenceColor('#eee')).be.equal('\\cf4');
-      should(Color.getRtfReferenceColor('#333;')).be.equal('\\cf3');
+      should(Color.getRtfReferenceColor('#333')).be.equal('\\cf3 ');
+      should(Color.getRtfReferenceColor('#333333')).be.equal('\\cf3 ');
+      should(Color.getRtfReferenceColor('#eee')).be.equal('\\cf4 ');
+      should(Color.getRtfReferenceColor('#333;')).be.equal('\\cf3 ');
     });
   });
 
@@ -38,8 +38,8 @@ describe('ColorTest', () => {
   describe('getColorInColorTable()', () => {
     before(() => Color.cleanColorTable());
     it('Should return rtf reference color', () => {
-      should(Color.getColorInColorTable(['255', '188', '0'])).be.equal('\\cf1');
-      should(Color.getColorInColorTable(['238', '238', '238'])).be.equal('\\cf2');
+      should(Color.getColorInColorTable(['255', '188', '0'])).be.equal('\\cf1 ');
+      should(Color.getColorInColorTable(['238', '238', '238'])).be.equal('\\cf2 ');
       Color.co
     });
   });
@@ -74,7 +74,7 @@ describe('ColorTest', () => {
     });
 
     it('Should return a reference already declared', () => {
-      should(Color.getRtfReferenceColorInColorTable(['255', '0', '0'])).be.equal('\\cf1');
+      should(Color.getRtfReferenceColorInColorTable(['255', '0', '0'])).be.equal('\\cf1 ');
     });
 
     it('Reference not declared', () => {
