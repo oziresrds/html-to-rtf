@@ -20,7 +20,7 @@
   "main": "index.js",
   "dependencies": {
     "cheerio": "1.0.0-rc.12",
-    "juice": "4.1.0"
+    "juice": "9.1.0"
   },
   "devDependencies": {
     "browserify": "17.0.0",
