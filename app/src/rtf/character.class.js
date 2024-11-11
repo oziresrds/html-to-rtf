@@ -19,9 +19,9 @@ class Character {
      */
     static getTableData() {
         const table = [
+            { ascii_code: '39', rtf_escape: '\\\'27', character: "'", character_name: 'Apostrophe' },
             { ascii_code: '33', rtf_escape: '\\\'21', character: '!', character_name: 'Exclamation mark' },
             { ascii_code: '34', rtf_escape: '\\\'22', character: '"', character_name: 'Double quote' },
-            { ascii_code: '39', rtf_escape: '\\\'27', character: "'", character_name: 'Apostrophe' },
             { ascii_code: '123', rtf_escape: '\\\'7b', character: '{', character_name: 'Left curly brace' },
             { ascii_code: '125', rtf_escape: '\\\'7d', character: '}', character_name: 'Right curly brace' },
             { ascii_code: '145', rtf_escape: '\\\'91', character: '‘', character_name: 'Left single quote' },
